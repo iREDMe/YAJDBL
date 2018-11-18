@@ -1,3 +1,7 @@
+/**
+ * @class UnavailableGuild
+ */
+
 class UnavailableGuild
 {
     constructor(client, data)

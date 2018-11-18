@@ -65,5 +65,20 @@ module.exports =
         "dd4dbc0016779df1378e7812eabaa04d",
         "0e291f67c9274a1abdddeb3fd919cbaa",
         "1cbd08c76f8af6dddce02c5138971129"
-    ]
+    ],
+
+    /* Text Permissions */
+    TEXT_PERMISSIONS: {
+        createInstantInvite: 0x00000001,
+        manageChannels: 0x00000010,
+        manageWebhooks: 0x20000000,
+        readMessages: 0x00000400,
+        sendMessages: 0x00000800,
+        manageMessages: 0x00002000,
+        embedLinks: 0x00004000,
+        attachFiles: 0x00008000,
+        readMessageHistory: 0x00010000,
+        externalEmojis: 0x00040000,
+        addReactions: 0x00000040
+    }
 };

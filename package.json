@@ -2,7 +2,7 @@
   "name": "yajdbl",
   "version": "0.0.1",
   "description": "A WIP (ALPHA STAGE) Promise-Based Discord bot Library for Javascript",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +19,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "ws": "^6.1.0"
-  }
+  },
+  "devDependencies": {}
 }

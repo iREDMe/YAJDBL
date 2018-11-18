@@ -2,6 +2,10 @@ const { DEFAULTAVATARS } = require('../Util/Constants');
 const ENDPOINTS = require('../Rest/Endpoints');
 require('../Util/Prototypes');
 
+/**
+ * @class User
+ */
+
 class User
 {
     constructor(client, data)
@@ -10,58 +14,50 @@ class User
 
         /**
          * The user's avatar
-         * @type {String}
          */
 
         this.avatar = data.avatar;
 
         /**
          * The user's avatar URL
-         * @type {String}
          */
 
         this.avatarURL = null;
 
         /**
          * The user's default Avatar
-         * @type {String}
          */
 
         this.defaultAvatar = DEFAULTAVATARS[data.discriminator % DEFAULTAVATARS.length];
 
         /**
          * The user's default Avatar url
-         * @type {String}
          */
 
         this.defaultAvatarURL = `https://discordapp.com/assets/${this.defaultAvatar}.png`;
 
         /**
          * User's discriminator
-         * @type {String}
          */
 
         this.discriminator = data.discriminator;
 
         /**
          * User's ID
-         * @type {Snowflake}
          */
 
         this.id = data.id;
 
         /**
          * User's tag
-         * @type {String}
          */
 
         this.tag = `${data.username}#${this.discriminator}`;
-        
+
         /**
          * User's Username
-         * @type {String}
          */
-    
+
         this.username = data.username;
 
         /**
@@ -105,6 +101,7 @@ class User
      * Send a message to the User
      * @param {String} content The content you will send
      * @param {Options} options The options for the message
+     * @param {EmbedObject} options.embed The {@link https://google.com|Options for the embed}
      */
 
     async send(content, options)
@@ -124,7 +121,7 @@ class User
         };
 
         var channel = await this.createDM();
-        
+
         return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(this._client.http.api, channel.id),
         {
             data:
