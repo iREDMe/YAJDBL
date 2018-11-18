@@ -1,5 +1,5 @@
 /**
- * @class UnavailableGuild
+ * @class Represents an Unavailable Guild
  */
 
 class UnavailableGuild

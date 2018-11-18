@@ -51,7 +51,7 @@ class Request
                     break;
 
                 case 502:
-                    this._client.emit('error', new DiscordRestError('Gateway unavailable ( Please contact devs about this )', 529))
+                    this._client.emit('error', new DiscordRestError('Gateway unavailable ( Please contact devs about this )', 502))
                     break;
 
                 default:

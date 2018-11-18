@@ -156,6 +156,21 @@ class Client extends ConnectionHandler
         this.ws.close();
         return process.exit(0);
     }
+
+    /**
+     * Prints something to the console
+     * @param {String} message The message to log
+     * @example
+     * <Client>.print('Logged In!');
+     * // Will Return: [2018-11-18 05:41:29]: Logged in!
+     */
+
+    print(message)
+    {
+        var date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+
+        return console.log(`[${date}]: ${message}`);
+    }
 };
 
 module.exports = Client;

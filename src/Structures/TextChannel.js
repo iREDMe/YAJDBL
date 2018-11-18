@@ -1,4 +1,10 @@
 const GuildChannel = require('./GuildChannel');
+const ENDPOINTS = require('../Rest/Endpoints');
+
+/**
+ * Represents a TextChannel
+ * @extends GuildChannel
+ */
 
 class TextChannel extends GuildChannel
 {

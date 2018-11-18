@@ -3,7 +3,7 @@ const ENDPOINTS = require('../Rest/Endpoints');
 require('../Util/Prototypes');
 
 /**
- * @class User
+ * @class Represents a user
  */
 
 class User

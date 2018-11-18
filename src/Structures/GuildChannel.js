@@ -3,6 +3,7 @@ const CONSTANTS = require('../Util/Constants');
 const Channel = require('./Channel');
 
 /**
+ * Represents a Guild Channel
  * @extends Channel
  */
 
@@ -10,13 +11,8 @@ class GuildChannel extends Channel
 {
     constructor(client, data)
     {
+        super(client, data);
         Object.defineProperty(this, '_client', { value: client });
-
-        /**
-         * The Guild that the Channel is in
-         */
-
-        this.guild = this._client.guilds.get(data.guild_id);
 
         /**
          * The Position of the Channel

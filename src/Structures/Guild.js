@@ -1,9 +1,10 @@
 const Collection = require('../Util/Collection');
-const User = require('./User');
 const ENDPOINTS = require('../Rest/Endpoints');
+const TextChannel = require('./TextChannel');
+const GuildChannel = require('./GuildChannel');
 
 /**
- * @class Guild
+ * @class Represents a Guild
  */
 
 class Guild
@@ -130,7 +131,8 @@ class Guild
 
         data.channels.forEach(channel =>
         {
-            this._client.channels.set(channel.id, channel);
+            this._client.channels.set(channel.id, new TextChannel(this._client, channel));
+            this.channels.set(channel.id, new GuildChannel(this._client, channel));
         });
 
         data.members.forEach(member =>

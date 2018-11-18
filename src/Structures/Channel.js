@@ -1,7 +1,7 @@
 const ENDPOINTS = require('../Rest/Endpoints');
 
 /**
- * @class Channel
+ * @class Represents a Channel
  */
 
 class Channel

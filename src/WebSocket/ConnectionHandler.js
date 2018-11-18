@@ -8,6 +8,7 @@ const ClientUser = require('../Structures/ClientUser');
 const User = require('../Structures/User');
 const UnavailableGuild = require('../Structures/UnavailableGuild');
 const Guild = require('../Structures/Guild');
+const TextChannel = require('../Structures/TextChannel');
 
 class ConnectionHandler extends EventEmitter
 {
@@ -38,7 +39,7 @@ class ConnectionHandler extends EventEmitter
     heartbeat(time, token)
     {
         setInterval(() =>
-        {  
+        {
             this.send({ op: OPCODES.heartbeat, d: null });
         }, time)
 
@@ -81,7 +82,8 @@ class ConnectionHandler extends EventEmitter
 
             case 'MESSAGE_CREATE':
                 packet.d.author = new User(this.client, packet.d.author);
-                packet.d.guild = this.guild;
+                packet.d.guild = this.guilds.get(packet.d.guild_id);
+                packet.d.channel = this.channels.get(packet.d.channel_id);
 
                 this.emit('message', packet.d);
                 break;
@@ -145,7 +147,7 @@ class ConnectionHandler extends EventEmitter
                 break;
         }
     }
-    
+
     /**
      * Detects if the client received a message
      * @param {String} token The client's token
@@ -212,7 +214,7 @@ class ConnectionHandler extends EventEmitter
                 case GATEWAY_CLOSE.unknownError:
                     this.emit('error', new Error(`Unknwon error: ${event.reason ? event.reason : ''}`))
                     break;
-                
+
                 case GATEWAY_CLOSE.unknownOPCode:
                     this.emit('error', new Error('Gateway received an unknown opcode'));
                     break;
