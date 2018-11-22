@@ -39,7 +39,7 @@ class Channel
 
     delete()
     {
-        return this._client.rest.request("DELETE", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+        return this._client.rest.request("DELETE", ENDPOINTS.CHANNELS(this.id),
         {
             headers:
             {

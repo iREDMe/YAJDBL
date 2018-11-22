@@ -131,8 +131,15 @@ class Guild
 
         data.channels.forEach(channel =>
         {
-            this._client.channels.set(channel.id, new TextChannel(this._client, channel));
-            this.channels.set(channel.id, new GuildChannel(this._client, channel));
+            if (channel.type === 0)
+            {
+                this._client.channels.set(channel.id, new TextChannel(this._client, channel));
+                this.channels.set(channel.id, new TextChannel(this._client, channel));
+            }
+            else {
+                this.channels.set(channel.id, new GuildChannel(this._client, channel));
+                this._client.channels.set(channel.id, new GuildChannel(this._client, channel));
+            }
         });
 
         data.members.forEach(member =>
@@ -151,7 +158,7 @@ class Guild
 
     ban(user, options = {})
     {
-        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this._client.http.api, this.id, user)}?delete-message-days=${options.days}&reason=${options.reason}`,
+        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days}&reason=${options.reason}`,
         {
             headers:
             {
@@ -163,13 +170,30 @@ class Guild
         });
     }
 
+    createChannel(options = {})
+    {
+        if (options.type === 'text') options.type === 0;
+        if (options.type === 'voice') options.type === 2;
+        if (options.type === 'category') options.type === 4;
+
+        return this._client.rest.request("POST", ENDPOINTS.GUILD_CHANNELS(this.id),
+        {
+            data:
+            {
+                name: options.name,
+                type: options.type,
+                permission_overwrites: options.overwrites
+            }
+        })
+    }
+
     /**
      * Fetches the guild bans of the guild
      */
 
     fetchBans()
     {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_BANS,
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.id),
         {
             headers:
             {
@@ -187,7 +211,7 @@ class Guild
 
     fetchInvites()
     {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_INVITES,
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_INVITES(this.id),
         {
             headers:
             {

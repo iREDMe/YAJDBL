@@ -31,24 +31,6 @@ class GuildChannel extends Channel
          */
 
         this.name = data.name;
-
-        /**
-         * The channel topic
-         */
-
-        this.topic = data.topic;
-
-        /**
-         * Whether the channel is nsfw or not
-         */
-
-        this.isNSFW = data.nsfw;
-
-        /**
-         * The last Message ID
-         */
-
-        this.lastMessageID = data.last_message_id;
     }
 
     /**
@@ -67,7 +49,7 @@ class GuildChannel extends Channel
 
     createInvite(options = {})
     {
-        return this._client.res.request("POST", ENDPOINTS.CHANNEL_INVITES(this._client.http.api, this.id),
+        return this._client.res.request("POST", ENDPOINTS.CHANNEL_INVITES(this.id),
         {
             data:
             {
@@ -98,7 +80,7 @@ class GuildChannel extends Channel
 
     delete()
     {
-        return this._client.rest.request("DELETE", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+        return this._client.rest.request("DELETE", ENDPOINTS.CHANNELS(this.id),
         {
             headers:
             {
@@ -122,7 +104,7 @@ class GuildChannel extends Channel
 
     edit(options = {})
     {
-        return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+        return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this.id),
         {
             data:
             {
@@ -153,7 +135,7 @@ class GuildChannel extends Channel
 
     fetchInvites()
     {
-        return this._client.rest.request("GET", ENDPOINTS.CHANNEL_INVITES(this._client.http.api, this.id),
+        return this._client.rest.request("GET", ENDPOINTS.CHANNEL_INVITES(this.id),
         {
             Authorization: `Bot ${this._client.token}`
         }).then(res =>
@@ -178,7 +160,7 @@ class GuildChannel extends Channel
                 var perm = CONSTANTS.TEXT_PERMISSIONS[perms.allow];
 
                 perms.allow = perm;
-                return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+                return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this.id),
                 {
                     data:
                     {
@@ -199,7 +181,7 @@ class GuildChannel extends Channel
                 var perm = CONSTANTS.TEXT_PERMISSIONS[perms.deny];
 
                 perms.deny = perm;
-                return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+                return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this.id),
                 {
                     data:
                     {
@@ -229,7 +211,7 @@ class GuildChannel extends Channel
 
     setName(name)
     {
-        return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this._client.http.api, this.id),
+        return this._client.rest.request("PATCH", ENDPOINTS.CHANNELS(this.id),
         {
             data:
             {

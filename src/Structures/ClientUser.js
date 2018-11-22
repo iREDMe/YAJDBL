@@ -108,7 +108,7 @@ class ClientUser extends User
             return this._client.emit('error', new Error('Invalid username'));
         }
 
-        return this._client.rest.request("PATCH", ENDPOINTS.USER(this._client.http.api, '@me'),
+        return this._client.rest.request("PATCH", ENDPOINTS.USER('@me'),
         {
             data:
             {

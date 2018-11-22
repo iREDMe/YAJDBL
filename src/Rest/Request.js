@@ -18,7 +18,7 @@ class Request
             return await axios(
             {
                 method: method,
-                url: url,
+                url: `${this._client.http.api}/${url}`,
                 data: data.data,
                 headers: data.headers
             });
