@@ -1,17 +1,23 @@
 module.exports =
 {
     /* User */
-    USER: (baseurl, userID) => `${baseurl}/users/${userID}`,
-    USER_CHANNELS: (baseurl, userID) => `${baseurl}/users/${userID}/channels`,
-    USERS: (baseurl) => `${baseurl}/users`,
+    USER: (userID) => `users/${userID}`,
+    USER_CHANNELS: (userID) => `users/${userID}/channels`,
+    USERS: `users`,
 
     /* Channels */
-    CHANNELS: (baseurl, channelID) => `${baseurl}/channels/${channelID}`,
-    CHANNEL_INVITES: (baseurl, channelID) => `${baseurl}/channels/${channelID}/invites`,
-    CHANNEL_MESSAGES: (baseurl, channelID) => `${baseurl}/channels/${channelID}/messages`,
+    CHANNELS: (channelID) => `channels/${channelID}`,
+    CHANNEL_INVITES: (channelID) => `channels/${channelID}/invites`,
+    CHANNEL_MESSAGE: (channelID, messageID) => `channels${channelID}/messages/${messageID}`,
+    CHANNEL_MESSAGES: (channelID) => `channels/${channelID}/messages`,
+    CHANNEL_PIN_MESSAGES: (channelID, messageID) => `channels/${channelID}/pins/${messageID}`,
+    CHANNEL_PINNED_MESSAGES: (channelID) => `channels/${channelID}/pins`,
+    CHANNEL_WEBHOOKS: (channelID) => `channels/${channelID}/webhooks`,
+    CHANNEL_TYPING: (channelID) => `channels/${channelID}/typing`,
 
     /* Guild */
-    GUILD_BAN: (baseurl, guildID, userID) => `${baseurl}/guilds/${guildID}/bans${userID}`,
-    GUILD_BANS: (baseURL, guildID) => `${baseurl}/guilds/${guildID}/bans`,
-    GUILD_INVITES: (baseURL, guildID) => `${baseurl}/guilds/${guildID}/invites`
+    GUILD_BAN: (guildID, userID) => `guilds/${guildID}/bans${userID}`,
+    GUILD_BANS: (guildID) => `guilds/${guildID}/bans`,
+    GUILD_CHANNELS: (guildID) => `guilds/${guildID}/channels`,
+    GUILD_INVITES: (guildID) => `guilds/${guildID}/invites`,
 };

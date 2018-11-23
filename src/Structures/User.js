@@ -49,6 +49,12 @@ class User
         this.id = data.id;
 
         /**
+         * User's Mention
+         */
+
+        this.mention = `<@${this.id}>`;
+
+        /**
          * User's tag
          */
 
@@ -80,7 +86,7 @@ class User
 
     createDM()
     {
-        return this._client.rest.request("POST", ENDPOINTS.USER_CHANNELS(this._client.http.api, '@me'),
+        return this._client.rest.request("POST", ENDPOINTS.USER_CHANNELS('@me'),
         {
             data:
             {
@@ -122,7 +128,7 @@ class User
 
         var channel = await this.createDM();
 
-        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(this._client.http.api, channel.id),
+        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel.id),
         {
             data:
             {

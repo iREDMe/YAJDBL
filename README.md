@@ -1,9 +1,9 @@
 # YAJDBL
-YAJDBL, a Simple and easy to use (WIP, Alpha Stage) Discord Bot Library for the Discord API!
+YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 
 ## Questions
 **Q**: Should i use it now?  
-**A**: As of now, you can but i assure you that there is a 80% Chance of Getting multiple errors that aren't handled  
+**A**: Yes you can! But this is not a Complete library and lacks certain features
 
 **Q**: Why YAJDBL?  
 **A**: Because we provide an easier way to interact to the Discord API Without being stressed  
@@ -12,9 +12,16 @@ YAJDBL, a Simple and easy to use (WIP, Alpha Stage) Discord Bot Library for the 
 **A**: It's simple, **Y**et **A**nother **J**avascript **D**iscord **B**ot **L**ibrary  
 
 ## Todo list  
-- Add a much easier way for Functions  
 - Voice Support  
 - Sharding  
 - Proper Disconnection Handling  
-- Finish all the Strucutres  
+- Finish all the Structures  
 - ~~REST Error Handling~~ ☑
+
+## Notes
+- This is not a clone of Discord.JS  
+- Project started on November 8, 2018  
+- Thanks to `Zoro#0001` *From Plexi Development* for helping me on Typings *soon*  
+
+## Developers
+- `Kevlar#6307`: Main Developer/Maintainer  
