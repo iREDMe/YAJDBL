@@ -29,6 +29,7 @@ Full documentation [here!](https://pixelthegreat.github.io/YAJDBL/)
 - This is not a clone of Discord.JS  
 - Project started on November 8, 2018  
 - Thanks to `Zoro#0001` *From Plexi Development* for helping me on Typings *soon*  
+- Thanks to [boltxyz](https://github.com/boltxyz) For being a contributor
 
 ## Developers
 - `Kevlar#6307`: Main Developer/Maintainer  
