@@ -22,6 +22,12 @@ declare module 'YAJDBL' {
 		public http: ClientOptions.http;
 
 		public wsOptions: ClientOptions.wsOptions;
+
+		public login(token: string): any;
+
+		public disconnect(): any;
+
+		public print(message: string | object | number): any;
 			
 	}
 
@@ -44,20 +50,9 @@ declare module 'YAJDBL' {
                 * `Array.from(collection.values())` instead.
                 */				
 		public array(): V[];
-
-
-		/**
-     		* Creates an ordered array of the keys of this collection, and caches it internally. The array will only be
-	        * reconstructed if an item is added to or removed from the collection, or if you change the length of the array
-    	        * itself. If you don't want this caching behavior, use `[...collection.keys()]` or
-    	        * `Array.from(collection.keys())` instead.
-		*/
+		
 		public keyArray(): K[];
 
-	        /**
-		 * Obtains the first value(s) in this collection.
-                 * @param {number} [count] Number of values to obtain from the beginning
-		 */
 		public first(count?: number): Array<any>;
 		
 		public every(fn: void, thisArg?: any): any;
@@ -65,28 +60,82 @@ declare module 'YAJDBL' {
 		public firstKey(count?: number): any;
 
 		public lastKey(count?: number): any;
-
-		
-	       /**
-     		* Searches for a single item where its specified property's value is identical to the given value
-     		* (`item[prop] === value`), or the given function returns a truthy value. In the latter case, this is identical to
-     		* [Array.find()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find).
-		* <warn>All collections used in Discord.js are mapped using their `id` property, and if you want to find by id you
-		* should use the `get` method. See
-		* [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) for details.</warn>
-		*  @param {string|Function} propOrFn The property to test against, or the function to test with
-		*  @param {*} [value] The expected value - only applicable and required if using a property for the first argument
-		*  @returns {*}
-		*  @example
-		*  collection.find('username', 'Bob');
-	   	* @example
-	   	* collection.find(val => val.username === 'Bob');
-	        */
+	       
 		public find(propOrFunc: string | void, value?: any): any;
 
 
 	}
 
+	export class Channel {
+		constructor(client: Client, data: any);
+
+		public type: string;
+
+		public delete(): void
+	
+	}
+
+	export class GuildChannel extends Channel {
+		constructor(client: Client, data: any);
+
+		private _client: Client;
+
+		public position: number;
+
+		public permissionOverwrites: any;
+
+		public name: string;
+
+		public createInvite(options?: GuildChannelOptions): any;
+
+		public edit(options?: EditChannelOptions): Promise<Channel>;
+
+		public fetchInvites(): Promise<Array<object>>;
+
+		public overwritePermissions(options: any): Promise<Channel>;
+
+		public setName(name: string): Promise<Channel>;	
+	
+
+	
+	}
+
+	export class TextChannel {
+		constructor(client: Client, data: any);
+
+		public topic: string;
+
+		public type: 'text';
+
+		public isNSFW: boolean;
+
+		public lastMessageID: number;
+
+		public createWebhook(options?: { name? string, avatar: string}): Promise<any>;
+
+		public edit(options: { name?: string, position: number, topic: string, nsfw: boolean, rate_limit_per_user: number, parent_id: number|string }): Promise<TextChannel>;
+	
+		public fetchMessage(messageID: number | string): Promise<any>; // @TODO: returns Promise<Message>
+
+		public fetchMessages(options: { limit?: number, before?: number, after?: number, around?: number }): Promise<Array<any>> // @TODO: Message instead of any.
+			
+	}
+
+
+	type GuildChannelOptions = {
+		maxAge?: number,
+		maxUses?: number,
+		temporary?: boolean,
+		unique?: boolean
+	}
+
+
+	type EditChannelOptions = {
+		name?: string;
+		position?: number;
+		topic?: string;
+		isNSFW?: boolean
+	}
 
 	type ClientOptions = {
 		disableEveryone?: boolean,
