@@ -1,4 +1,5 @@
 # YAJDBL
+[![NPM](https://nodei.co/npm/yajdbl.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/yajdbl/)  
 YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 
 ## Questions
