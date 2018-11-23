@@ -1,0 +1,23 @@
+{
+    "name": "yajdbl",
+    "version": "0.1.0",
+    "description": "A WIP (ALPHA STAGE) Promise-Based Discord bot Library for Javascript",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PixelTheGreat/YAJDBL.git"
+    },
+    "author": "Kevlar#6307",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/PixelTheGreat/YAJDBL/issues"
+    },
+    "homepage": "https://github.com/PixelTheGreat/YAJDBL#readme",
+    "dependencies": {
+        "axios": "^0.18.0",
+        "ws": "^6.1.0"
+    }
+}
