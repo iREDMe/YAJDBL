@@ -7,11 +7,11 @@ const GuildChannel = require('./GuildChannel');
  * @class Represents a Guild
  */
 
-class Guild {
-    constructor(client, data) {
-        Object.defineProperty(this, '_client', {
-            value: client
-        });
+class Guild
+{
+    constructor(client, data)
+    {
+        Object.defineProperty(this, '_client', { value: client });
 
         /**
          * The Guild name
@@ -129,48 +129,25 @@ class Guild {
 
         this.members = new Collection();
 
-        data.channels.forEach(channel => {
-            if (channel.type === 0) {
+        data.channels.forEach(channel =>
+        {
+            if (channel.type === 0)
+            {
                 this._client.channels.set(channel.id, new TextChannel(this._client, channel));
                 this.channels.set(channel.id, new TextChannel(this._client, channel));
-            } else {
+            }
+            else {
                 this.channels.set(channel.id, new GuildChannel(this._client, channel));
                 this._client.channels.set(channel.id, new GuildChannel(this._client, channel));
             }
         });
 
-        data.members.forEach((member) => {
+        data.members.forEach(member =>
+        {
             member.guild = this;
             this.members.set(member.user.id, member);
             this._client.users.set(member.user.id, member.user);
         });
-    }
-
-    /**
-     * Modify this guild.
-     * @param {GuildUpdateData} [data] Guild update options/data.
-     * @returns {Promise<Guild>}
-     */
-    edit(data = {}) {
-        const resolvedData = {};
-        if (data.name) resolvedData.name = data.name;
-        if (data.region) resolvedData.region = data.region;
-        if (typeof data.verificationLevel !== 'undefined') resolvedData.verification_level = Number(data.verificationLevel);
-        if (typeof data.afkChannelId !== 'undefined') resolvedData.afk_channel_id = data.afkChannelId;
-        if (typeof data.systemChannelId !== 'undefined') resolvedData.system_channel_id = data.systemChannel;
-        if (data.afkTimeout) resolvedData.afk_timeout = Number(data.afkTimeout);
-        if (typeof data.icon !== 'undefined') resolvedData.icon = data.icon;
-        if (data.ownerId) resolvedData.owner_id = data.ownerId;
-        if (data.splash) resolvedData.splash = data.splash;
-        if (typeof data.explicitContentFilter !== 'undefined') resolvedData.explicit_content_filter = Number(data.explicitContentFilter);
-
-        return this._client.rest.request('PATCH', ENDPOINTS.GUILDS(this.id), {
-            data: resolvedData,
-            headers: {
-                Authorization: `Bot ${this._client.token}`
-            }
-        });
-
     }
 
     /**
@@ -180,13 +157,59 @@ class Guild {
      * @returns {Promise<User>}
      */
 
-    ban(user, options = {}) {
-        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days}&reason=${options.reason}`, {
-            headers: {
+    ban(user, options = {})
+    {
+        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days}&reason=${options.reason}`,
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(() => {
+        }).then(() =>
+        {
             return this.members.get(user);
+        });
+    }
+
+    /**
+     * Modify this guild.
+     * @param {GuildUpdateData} [data] Guild update options/data
+     * @returns {Promise<Guild>}
+     */
+    edit(data = {})
+    {
+        const resolvedData = {};
+
+        if (data.name) resolvedData.name = data.name;
+
+        if (data.region) resolvedData.region = data.region;
+
+        if (typeof data.verificationLevel !== 'undefined') resolvedData.verification_level = Number(data.verificationLevel);
+        
+        if (typeof data.afkChannelId !== 'undefined') resolvedData.afk_channel_id = data.afkChannelId;
+        
+        if (typeof data.systemChannelId !== 'undefined') resolvedData.system_channel_id = data.systemChannel;
+        
+        if (data.afkTimeout) resolvedData.afk_timeout = Number(data.afkTimeout);
+        
+        if (typeof data.icon !== 'undefined') resolvedData.icon = data.icon;
+        
+        if (data.ownerId) resolvedData.owner_id = data.ownerId;
+        
+        if (data.splash) resolvedData.splash = data.splash;
+        
+        if (typeof data.explicitContentFilter !== 'undefined') resolvedData.explicit_content_filter = Number(data.explicitContentFilter);
+
+        return this._client.rest.request('PATCH', ENDPOINTS.GUILDS(this.id),
+        {
+            data: resolvedData,
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
         });
     }
 
@@ -199,13 +222,16 @@ class Guild {
      * @returns {Promise<GuildChannel>}
      */
 
-    createChannel(options = {}) {
+    createChannel(options = {})
+    {
         if (options.type === 'text') options.type === 0;
         if (options.type === 'voice') options.type === 2;
         if (options.type === 'category') options.type === 4;
 
-        return this._client.rest.request("POST", ENDPOINTS.GUILD_CHANNELS(this.id), {
-            data: {
+        return this._client.rest.request("POST", ENDPOINTS.GUILD_CHANNELS(this.id),
+        {
+            data:
+            {
                 name: options.name,
                 type: options.type,
                 permission_overwrites: options.overwrites
@@ -218,12 +244,16 @@ class Guild {
      * @returns {Promise<Array<Bans>>}
      */
 
-    fetchBans() {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.id), {
-            headers: {
+    fetchBans()
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_BANS(this.id),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data;
         });
     }
@@ -233,12 +263,16 @@ class Guild {
      * @returns {Promise<Array<Invites>>}
      */
 
-    fetchInvites() {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_INVITES(this.id), {
-            headers: {
+    fetchInvites()
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_INVITES(this.id),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data;
         });
     }
@@ -249,12 +283,16 @@ class Guild {
      * @returns {Promise<Member>}
      */
 
-    fetchMember(user) {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_MEMBER(this.id, user), {
-            headers: {
+    fetchMember(user)
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_MEMBER(this.id, user),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data;
         });
     }
@@ -267,12 +305,16 @@ class Guild {
      * @returns {Promise<Array<Members>>}	
      */
 
-    fetchMembers(options = {}) {
-        return this._client.rest.request("GET", `${ENDPOINTS.GUILD_MEMBERS(this.id)}?limit=${options.limit || 1}&after=${options.after || null}`, {
-            headers: {
+    fetchMembers(options = {})
+    {
+        return this._client.rest.request("GET", `${ENDPOINTS.GUILD_MEMBERS(this.id)}?limit=${options.limit || 1}&after=${options.after || null}`,
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data;
         });
     }
@@ -282,12 +324,16 @@ class Guild {
      * @returns {Promise<Array<VoiceRegions>>}
      */
 
-    fetchVoiceRegions() {
-        return this._client.rest.request("GET", ENDPOINTS.GUILD_REGIONS(this.id), {
-            headers: {
+    fetchVoiceRegions()
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_REGIONS(this.id),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data;
         });
     }
@@ -298,12 +344,16 @@ class Guild {
      * @returns {Promise<Member>}
      */
 
-    kick(user) {
-        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_MEMBER(this.id, user), {
-            headers: {
+    kick(user)
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_MEMBER(this.id, user),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(() => {
+        }).then(() =>
+        {
             return this.members.get(user);
         });
     }
@@ -313,28 +363,36 @@ class Guild {
      * @returns {Promise<Guild>}
      */
 
-    leave() {
-        return this._client.rest.request("DELETE", ENDPOINTS.USER_GUILD(this.id), {
-            headers: {
+    leave()
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.USER_GUILD(this.id),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(() => {
+        }).then(() =>
+        {
             return this;
         });
     }
-
+    
     /**
      * Begin a prune operation
      * @param {Number} [days=1] Number of days to prune
      * @returns {Promise<Number>}
      */
 
-    prune(days = 1) {
-        return this._client.rest.request("POST", `${ENDPOINTS.GUILD_PRUNE(this.id)}?days=${days}`, {
-            headers: {
+    prune(days = 1)
+    {
+        return this._client.rest.request("POST", `${ENDPOINTS.GUILD_PRUNE(this.id)}?days=${days}`,
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(res => {
+        }).then(res =>
+        {
             return res.data.pruned;
         });
     }
@@ -345,10 +403,9 @@ class Guild {
      * @returns {Promise<Member>}
      */
 
-    async softban(user) {
-        this.ban(user, {
-            days: 7
-        });
+    async softban(user)
+    {
+        this.ban(user, { days: 7 });
         this.unban(user);
 
         return this.members.get(user);
@@ -360,12 +417,16 @@ class Guild {
      * @returns {Promise<Member>}
      */
 
-    unban(user) {
-        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_BAN(this.id, user), {
-            headers: {
+    unban(user)
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_BAN(this.id, user),
+        {
+            headers:
+            {
                 Authorization: `Bot ${this._client.token}`
             }
-        }).then(() => {
+        }).then(() =>
+        {
             return this.members.get(user);
         });
     }
