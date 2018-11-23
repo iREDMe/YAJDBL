@@ -154,6 +154,7 @@ class Guild
      * Bans a guild member
      * @param {String} user The user ID of the member to ban
      * @param {Object} options Ban options
+     * @returns {Promise<User>}
      */
 
     ban(user, options = {})
@@ -166,9 +167,18 @@ class Guild
             }
         }).then(() =>
         {
-            return this._client.users.get(user);
+            return this.members.get(user);
         });
     }
+
+    /**
+     * Creates a channel
+     * @param {Object} options Options for creating a channel
+     * @param {String} options.name The name of the Channel
+     * @param {String} options.type The type of the Channel
+     * @param {Array} options.overwrites An array of Permission Overwrites
+     * @returns {Promise<GuildChannel>}
+     */
 
     createChannel(options = {})
     {
@@ -189,6 +199,7 @@ class Guild
 
     /**
      * Fetches the guild bans of the guild
+     * @returns {Promise<Array<Bans>>}
      */
 
     fetchBans()
@@ -207,6 +218,7 @@ class Guild
 
     /**
      * Fetches invites on the Guild
+     * @returns {Promise<Array<Invites>>}
      */
 
     fetchInvites()
@@ -220,6 +232,160 @@ class Guild
         }).then(res =>
         {
             return res.data;
+        });
+    }
+
+    /**
+     * Fetches a member inside the guild
+     * @param {String} user The ID of the Member to get
+     * @returns {Promise<Member>}
+     */
+
+    fetchMember(user)
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_MEMBER(this.id, user),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data;
+        });
+    }
+
+    /**
+     * Fetches Guild Members
+     * @param {Object} options The options for fetching the Guild Members
+     * @param {Number} [options.limit=1] The limit of members to fetch
+     * @param {String} [options.after=null] The highest user id in the previous page
+     * @returns {Promise<Array<Members>>}	
+     */
+
+    fetchMembers(options = {})
+    {
+        return this._client.rest.request("GET", `${ENDPOINTS.GUILD_MEMBERS(this.id)}?limit=${options.limit || 1}&after=${options.after || null}`,
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data;
+        });
+    }
+
+    /**
+     * Fetch available voice regions.
+     * @returns {Promise<Array<VoiceRegions>>}
+     */
+
+    fetchVoiceRegions()
+    {
+        return this._client.rest.request("GET", ENDPOINTS.GUILD_REGIONS(this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data;
+        });
+    }
+
+    /**
+     * Kicks a User
+     * @param {String} user The id of the User to Kick
+     * @returns {Promise<Member>}
+     */
+
+    kick(user)
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_MEMBER(this.id, user),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this.members.get(user);
+        });
+    }
+
+    /**
+     * Makes the client leave the guild
+     * @returns {Promise<Guild>}
+     */
+
+    leave()
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.USER_GUILD(this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+    
+    /**
+     * Begin a prune operation
+     * @param {Number} [days=1] Number of days to prune
+     * @returns {Promise<Number>}
+     */
+
+    prune(days = 1)
+    {
+        return this._client.rest.request("POST", `${ENDPOINTS.GUILD_PRUNE(this.id)}?days=${days}`,
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data.pruned;
+        });
+    }
+
+    /**
+     * Softbans a user
+     * @param {String} user The ID of the User to softban
+     * @returns {Promise<Member>}
+     */
+
+    async softban(user)
+    {
+        this.ban(user, { days: 7 });
+        this.unban(user);
+
+        return this.members.get(user);
+    }
+
+    /**
+     * Unbans a member
+     * @param {String} user The UserID to unban
+     * @returns {Promise<Member>}
+     */
+
+    unban(user)
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_BAN(this.id, user),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this.members.get(user);
         });
     }
 };

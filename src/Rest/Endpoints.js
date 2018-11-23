@@ -3,6 +3,7 @@ module.exports =
     /* User */
     USER: (userID) => `users/${userID}`,
     USER_CHANNELS: (userID) => `users/${userID}/channels`,
+    USER_GUILD: (guildID) => `users/@me/guilds/${guildID}`,
     USERS: `users`,
 
     /* Channels */
@@ -13,11 +14,14 @@ module.exports =
     CHANNEL_PIN_MESSAGES: (channelID, messageID) => `channels/${channelID}/pins/${messageID}`,
     CHANNEL_PINNED_MESSAGES: (channelID) => `channels/${channelID}/pins`,
     CHANNEL_WEBHOOKS: (channelID) => `channels/${channelID}/webhooks`,
-    CHANNEL_TYPING: (channelID) => `channels/${channelID}/typing`,
 
     /* Guild */
-    GUILD_BAN: (guildID, userID) => `guilds/${guildID}/bans${userID}`,
+    GUILD_BAN: (guildID, userID) => `guilds/${guildID}/bans/${userID}`,
     GUILD_BANS: (guildID) => `guilds/${guildID}/bans`,
     GUILD_CHANNELS: (guildID) => `guilds/${guildID}/channels`,
     GUILD_INVITES: (guildID) => `guilds/${guildID}/invites`,
+    GUILD_MEMBER: (guildID, userID) => `guilds/${guildID}/members/${userID}`,
+    GUILD_MEMBERS: (guildID) => `guilds/${guildID}/members`,
+    GUILD_REGIONS: (guildID) => `guilds/${guildID}/regions`,
+    GUILD_PRUNE: (guildID) => `guilds/${guildID}/prune`
 };

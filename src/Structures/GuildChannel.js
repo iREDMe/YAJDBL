@@ -126,7 +126,7 @@ class GuildChannel extends Channel
 
     /**
      * Fetches the an array of Invites for the Channel
-     * @returns {Promise<Array<Object>>}
+     * @returns {Promise<Array<Invite>>}
      * @example
      * <Channel>.fetchInvites()
      *     .then(invites => console.log(invites))

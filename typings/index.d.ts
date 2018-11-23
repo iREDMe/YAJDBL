@@ -111,7 +111,7 @@ declare module 'YAJDBL' {
 
 		public lastMessageID: number;
 
-		public createWebhook(options?: { name? string, avatar: string}): Promise<any>;
+		public createWebhook(options?: { name?: string, avatar: string}): Promise<any>;
 
 		public edit(options: { name?: string, position: number, topic: string, nsfw: boolean, rate_limit_per_user: number, parent_id: number|string }): Promise<TextChannel>;
 	

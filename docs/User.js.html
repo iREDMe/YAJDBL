@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>User.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Channel.html">Channel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Channel.html#delete">delete</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ClientUser.html">ClientUser</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ClientUser.html#createDM">createDM</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ClientUser.html#send">send</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ClientUser.html#setActivity">setActivity</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ClientUser.html#setStatus">setStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ClientUser.html#setUsername">setUsername</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Guild.html">Guild</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#ban">ban</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#createChannel">createChannel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#fetchBans">fetchBans</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#fetchInvites">fetchInvites</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#fetchMember">fetchMember</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#fetchMembers">fetchMembers</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#fetchVoiceRegions">fetchVoiceRegions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#kick">kick</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#leave">leave</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#prune">prune</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#softban">softban</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Guild.html#unban">unban</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="GuildChannel.html">GuildChannel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#createInvite">createInvite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#delete">delete</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#edit">edit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#fetchInvites">fetchInvites</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#overwritePermissions">overwritePermissions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="GuildChannel.html#setName">setName</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MessageEmbed.html">MessageEmbed</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#addField">addField</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setAuthor">setAuthor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setColor">setColor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setDescription">setDescription</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setFooter">setFooter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setImage">setImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setThumbnail">setThumbnail</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setTimestamp">setTimestamp</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setTitle">setTitle</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MessageEmbed.html#setUrl">setUrl</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="TextChannel.html">TextChannel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#createInvite">createInvite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#createWebhook">createWebhook</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#delete">delete</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#edit">edit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#fetchInvites">fetchInvites</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#fetchMessage">fetchMessage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#fetchMessages">fetchMessages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#fetchPinnedMessages">fetchPinnedMessages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#overwritePermissions">overwritePermissions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#pin">pin</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#send">send</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#setName">setName</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="TextChannel.html#unpin">unpin</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="UnavailableGuild.html">UnavailableGuild</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="User.html">User</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="User.html#createDM">createDM</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="User.html#send">send</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">User.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { DEFAULTAVATARS } = require('../Util/Constants');
+const ENDPOINTS = require('../Rest/Endpoints');
+require('../Util/Prototypes');
+
+/**
+ * @class Represents a user
+ */
+
+class User
+{
+    constructor(client, data)
+    {
+        Object.defineProperty(this, '_client', { value: client });
+
+        /**
+         * The user's avatar
+         */
+
+        this.avatar = data.avatar;
+
+        /**
+         * The user's avatar URL
+         */
+
+        this.avatarURL = null;
+
+        /**
+         * The user's default Avatar
+         */
+
+        this.defaultAvatar = DEFAULTAVATARS[data.discriminator % DEFAULTAVATARS.length];
+
+        /**
+         * The user's default Avatar url
+         */
+
+        this.defaultAvatarURL = `https://discordapp.com/assets/${this.defaultAvatar}.png`;
+
+        /**
+         * User's discriminator
+         */
+
+        this.discriminator = data.discriminator;
+
+        /**
+         * User's ID
+         */
+
+        this.id = data.id;
+
+        /**
+         * User's Mention
+         */
+
+        this.mention = `&lt;@${this.id}>`;
+
+        /**
+         * User's tag
+         */
+
+        this.tag = `${data.username}#${this.discriminator}`;
+
+        /**
+         * User's Username
+         */
+
+        this.username = data.username;
+
+        /**
+         * Add a check for the avatarURL if it is the default or not
+         */
+
+        if (!this.avatar)
+        {
+            this.avatar = this.defaultAvatar;
+            this.avatarURL = this.defaultAvatarURL;
+        }
+        else {
+            this.avatarURL = `${this._client.http.cdn}/avatars/${this.id}/${this.avatar}`;
+        }
+    }
+
+    /**
+     * This will create a DM Channel between the client and the user
+     */
+
+    createDM()
+    {
+        return this._client.rest.request("POST", ENDPOINTS.USER_CHANNELS('@me'),
+        {
+            data:
+            {
+                recipient_id: this.id
+            },
+
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data;
+        });
+    }
+
+    /**
+     * Send a message to the User
+     * @param {String} content The content you will send
+     * @param {Options} options The options for the message
+     * @param {EmbedObject} options.embed The {@link https://google.com|Options for the embed}
+     */
+
+    async send(content, options)
+    {
+        if (typeof content === 'object' &amp;&amp; !options)
+        {
+            options = content;
+            content = null;
+        };
+
+        if (!options) options = {};
+
+        // We add a check if it's a string because mentions on embeds doesn't work
+        if (this._client.disableEveryone &amp;&amp; typeof content === 'string')
+        {
+            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
+        };
+
+        var channel = await this.createDM();
+
+        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(channel.id),
+        {
+            data:
+            {
+                content: content,
+                embed: options.embed
+            },
+
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return res.data;
+        });
+    }
+};
+
+module.exports = User;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 23 2018 20:16:04 GMT+0800 (Singapore Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
