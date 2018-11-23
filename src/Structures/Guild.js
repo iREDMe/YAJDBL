@@ -2,6 +2,7 @@ const Collection = require('../Util/Collection');
 const ENDPOINTS = require('../Rest/Endpoints');
 const TextChannel = require('./TextChannel');
 const GuildChannel = require('./GuildChannel');
+const User = require('./User');
 
 /**
  * @class Represents a Guild
@@ -146,7 +147,7 @@ class Guild
         {
             member.guild = this;
             this.members.set(member.user.id, member);
-            this._client.users.set(member.user.id, member.user);
+            this._client.users.set(member.user.id, new User(this._client, member.user));
         });
     }
 
