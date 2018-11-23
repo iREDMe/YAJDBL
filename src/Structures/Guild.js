@@ -172,6 +172,48 @@ class Guild
     }
 
     /**
+     * Modify this guild.
+     * @param {GuildUpdateData} [data] Guild update options/data
+     * @returns {Promise<Guild>}
+     */
+    edit(data = {})
+    {
+        const resolvedData = {};
+
+        if (data.name) resolvedData.name = data.name;
+
+        if (data.region) resolvedData.region = data.region;
+
+        if (typeof data.verificationLevel !== 'undefined') resolvedData.verification_level = Number(data.verificationLevel);
+        
+        if (typeof data.afkChannelId !== 'undefined') resolvedData.afk_channel_id = data.afkChannelId;
+        
+        if (typeof data.systemChannelId !== 'undefined') resolvedData.system_channel_id = data.systemChannel;
+        
+        if (data.afkTimeout) resolvedData.afk_timeout = Number(data.afkTimeout);
+        
+        if (typeof data.icon !== 'undefined') resolvedData.icon = data.icon;
+        
+        if (data.ownerId) resolvedData.owner_id = data.ownerId;
+        
+        if (data.splash) resolvedData.splash = data.splash;
+        
+        if (typeof data.explicitContentFilter !== 'undefined') resolvedData.explicit_content_filter = Number(data.explicitContentFilter);
+
+        return this._client.rest.request('PATCH', ENDPOINTS.GUILDS(this.id),
+        {
+            data: resolvedData,
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
      * Creates a channel
      * @param {Object} options Options for creating a channel
      * @param {String} options.name The name of the Channel

@@ -11,11 +11,13 @@ module.exports =
     CHANNEL_INVITES: (channelID) => `channels/${channelID}/invites`,
     CHANNEL_MESSAGE: (channelID, messageID) => `channels${channelID}/messages/${messageID}`,
     CHANNEL_MESSAGES: (channelID) => `channels/${channelID}/messages`,
+    CHANNEL_BULK_DELETE: (channelID) => `channels/${channelID}/messages/bulk-delete`,
     CHANNEL_PIN_MESSAGES: (channelID, messageID) => `channels/${channelID}/pins/${messageID}`,
     CHANNEL_PINNED_MESSAGES: (channelID) => `channels/${channelID}/pins`,
     CHANNEL_WEBHOOKS: (channelID) => `channels/${channelID}/webhooks`,
 
     /* Guild */
+    GUILDS: (guildID) => `guilds/${guildID}`,
     GUILD_BAN: (guildID, userID) => `guilds/${guildID}/bans/${userID}`,
     GUILD_BANS: (guildID) => `guilds/${guildID}/bans`,
     GUILD_CHANNELS: (guildID) => `guilds/${guildID}/channels`,
