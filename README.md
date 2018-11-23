@@ -1,6 +1,8 @@
 # YAJDBL
+<div align="center">
 <a href="https://discordapp.com/invite/HKV8qaz"><img src="https://discordapp.com/api/guilds/515532750279933954/embed.png" alt="discord" /></a>  
 <a href="https://nodei.co/npm/yajdbl/"><img src="https://nodei.co/npm/yajdbl.png?downloads=true&downloadRank=true&stars=true"></a>  
+</div>  
 YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 
 ## Questions
