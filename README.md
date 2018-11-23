@@ -22,7 +22,7 @@ YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 **Stable**: `$ npm install --save YAJDBL`
 
 ## Documentation
-Full documentation [here!](https://pixelthegreat.github.io/YAJDBL/)
+Full documentation [here!](https://yajdbl.js.org/)
 
 ## Todo list  
 - Voice Support  
