@@ -88,7 +88,7 @@ class MessageEmbed
 
     setDescription(description)
     {
-        if (title.length > 2048) throw new RangeError('Message Embed Descriptions may not exceed 2048 Characters!');
+        if (description.length > 2048) throw new RangeError('Message Embed Descriptions may not exceed 2048 Characters!');
 
         this.description = description;
         return this;
