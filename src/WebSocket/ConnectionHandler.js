@@ -70,6 +70,7 @@ class ConnectionHandler extends EventEmitter
         {
             case 'READY':
                 this.user = new ClientUser(this, packet.d.user);
+                this.readyAt = new Date();
 
                 packet.d.guilds.forEach(g =>
                 {
