@@ -33,16 +33,10 @@ class Guild
         this.splash = data.splash || null;
 
         /**
-         * Guild Owner ID
-         */
-
-        this.ownerID = data.owner_id;
-
-        /**
          * Guild owner ( User Object )
          */
 
-        this.owner = this._client.users.get(this.ownerID);
+        this.owner = this._client.users.get(data.owner_id);
 
         /**
          * The Guild region
