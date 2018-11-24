@@ -3,25 +3,22 @@
 // License: MIT
 
 declare module 'YAJDBL' {
-	
-
-
 	export class Client extends ConnectionHandler {
 		constructor(options?: ClientOptions);
 	
 		public token: string;
 
-		public channels: Collection;
-		public guilds: Collection;
-		public users: Colletion;
+		public channels: Collection<Snowflake, Channel>;
+		public guilds: Collection<Snowflake, Guild>
+		public users: Collection<Snowflake, any>;
 
 
 		public client: Client;
-		public disableEveryone: ClientOptions.disableEveryone;
+		public disableEveryone: ClientOptions['disableEveryone'];
 
-		public http: ClientOptions.http;
+		public http: ClientOptions['http'];
 
-		public wsOptions: ClientOptions.wsOptions;
+		public wsOptions: ClientOptions['wsOptions'];
 
 		public login(token: string): any;
 
@@ -42,13 +39,6 @@ declare module 'YAJDBL' {
 		private _array: V[];
 		private _keyArray: K[];
 
-
-	       /**
-     	        * Creates an ordered array of the values of this collection, and caches it internally. The array will only be
-                * reconstructed if an item is added to or removed from the collection, or if you change the length of the array
-                * itself. If you don't want this caching behavior, use `[...collection.values()]` or
-                * `Array.from(collection.values())` instead.
-                */				
 		public array(): V[];
 		
 		public keyArray(): K[];
@@ -60,7 +50,7 @@ declare module 'YAJDBL' {
 		public firstKey(count?: number): any;
 
 		public lastKey(count?: number): any;
-	       
+
 		public find(propOrFunc: string | void, value?: any): any;
 
 
@@ -113,20 +103,86 @@ declare module 'YAJDBL' {
 
 		public createWebhook(options?: { name?: string, avatar: string}): Promise<any>;
 
-		public edit(options: { name?: string, position: number, topic: string, nsfw: boolean, rate_limit_per_user: number, parent_id: number|string }): Promise<TextChannel>;
+		public edit(options: { name?: string, position: number, topic: string, nsfw: boolean, rate_limit_per_user: number, parent_id: Snowflake }): Promise<TextChannel>;
 	
-		public fetchMessage(messageID: number | string): Promise<any>; // @TODO: returns Promise<Message>
+		public fetchMessage(messageID: Snowflake): Promise<any>; // @TODO: returns Promise<Message>
 
 		public fetchMessages(options: { limit?: number, before?: number, after?: number, around?: number }): Promise<Array<any>> // @TODO: Message instead of any.
-			
+
+	}
+
+	export class Guild {
+		constructor(data: GuildData);
+
+		public ban(user: Snowflake, options?: { days?: number, reason?: string }): Promise<any>; // @TODO: Member
+
+		public edit(data: GuildEditData): Promise<Guild>;
+
+		public createChannel(options: { type: number, name: string, overwrites: any[] }): Promise<GuildChannel>;
+
+		public fetchBans(): Promise<Array<any>>; // @TODO: Return Promise<Array<Bans>>;
+
+		public fetchInvites(): Promise<Array<any>> // @TODO: return Invites
+
+		public fetchMember(user: Snowflake): Promise<any> // @TODO: Member
+
+		public fetchMembers(options: { limit: number, after?: number }): Promise<Array<any>> // @TODO: Members
+
+		public fetchVoiceRegions(): Promise<Array<any>>; // @TODO: VoiceRegion
+
+		public kick(user: Snowflake): Promise<any>; // @TODO: Member
+
+		public leave(): Promise<Guild>;
+
+		public prune(days: number): Promise<number>;
+
+		public softban(user: Snowflake): Promise<any>; // @TODO: Member - below as well
+
+		public unban(user: Snowflake): Promise<any>;
 	}
 
 
+	type GuildEditData = {
+		name?: string;
+		region?: GuildData['region'];
+		verificationLevel?: GuildData['verificationLevel'];
+		afkChannelId?: Snowflake;
+		systemChannelId?: Snowflake;
+		afkTimeout?: GuildData['afkTimeout'];
+		icon?: GuildData['icon'];
+		ownerId?: Snowflake;
+		splash?: string;
+		explicitContentFilter?: number;
+	}
+
+
+	type GuildData = {
+		name: string;
+		ownerID: Snowflake;
+		owner: any; // @TODO: User
+		afkTimeout: number;
+		verificationLevel: number;
+		messageNotifications: number;
+		large: boolean;
+		lazy: boolean;
+		mfaLevel: number;
+		available: boolean;
+		memberCount: number;
+		joinedAt: Date;
+		features: string[];
+		id: Snowflake;
+		channels: Collection<Snowflake, GuildChannel>;
+		members: Collection<Snowflake, any>; // @TODO: Member
+		icon?: string | null;
+		splash?: string | null;
+		region?: string | null;
+	}
+
 	type GuildChannelOptions = {
-		maxAge?: number,
-		maxUses?: number,
-		temporary?: boolean,
-		unique?: boolean
+		maxAge?: number;
+		maxUses?: number;
+		temporary?: boolean;
+		unique?: boolean;
 	}
 
 
@@ -137,16 +193,18 @@ declare module 'YAJDBL' {
 		isNSFW?: boolean
 	}
 
+	type Snowflake = string;
+
 	type ClientOptions = {
-		disableEveryone?: boolean,
+		disableEveryone?: boolean;
 		http?: {
-			version?: number,
-			api?: string,
-			cdn?: string,
-			invite?: string
-		},
+			version?: number;
+			api?: string;
+			cdn?: string;
+			invite?: string;
+		};
 		wsOptions?: {
-			fetchAllMembers?: boolean
-		}
+			fetchAllMembers?: boolean;
+		};
 	};
 }
