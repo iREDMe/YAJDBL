@@ -8,7 +8,7 @@ const ClientUser = require('../Structures/ClientUser');
 const User = require('../Structures/User');
 const UnavailableGuild = require('../Structures/UnavailableGuild');
 const Guild = require('../Structures/Guild');
-const TextChannel = require('../Structures/TextChannel');
+const Message = require('../Structures/Message');
 
 class ConnectionHandler extends EventEmitter
 {
@@ -81,9 +81,7 @@ class ConnectionHandler extends EventEmitter
                 break;
 
             case 'MESSAGE_CREATE':
-                packet.d.author = new User(this.client, packet.d.author);
-                packet.d.guild = this.guilds.get(packet.d.guild_id);
-                packet.d.channel = this.channels.get(packet.d.channel_id);
+                packet.d = new Message(this, packet.d, this.channels.get(packet.d.channel_id), this.guilds.get(packet.d.guild_id))
 
                 this.emit('message', packet.d);
                 break;
@@ -100,26 +98,12 @@ class ConnectionHandler extends EventEmitter
                     {
                         guildID: this.guild.id
                     });
-                };
+                }
 
-                if (this.status !== 'ready')
+                if (this.guildLength === 0)
                 {
-
-                    if (this.client.guilds.map(g => !g.available))
-                    {
-                        this.guildCreateTimeout = setTimeout(() =>
-                        {
-                            this.status = 'ready';
-                        });
-                    }
-                }
-                else {
-                    if (this.guildLength === 0)
-                    {
-                        this.status = 'ready';
-                        this.emit('ready');
-                    };
-                }
+                    this.emit('ready');
+                };
 
                 this.emit('guildCreate', this.guild);
                 break;
@@ -133,11 +117,6 @@ class ConnectionHandler extends EventEmitter
                 });
 
                 this.client.guilds.set(guild.id, guild);
-
-                if (this.client.guilds.map(g => g.memberCount === g.members.size) && this.status !== 'ready')
-                {
-                    this.emit('ready');
-                };
 
                 this.emit('guildMembersChunk');
                 break;
