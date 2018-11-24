@@ -9,10 +9,15 @@ const Channel = require('./Channel');
 
 class GuildChannel extends Channel
 {
-    constructor(client, data)
+    constructor(guild, data)
     {
-        super(client, data);
+        super(guild.client, data);
         Object.defineProperty(this, '_client', { value: client });
+        
+        /** Guild that contains this channel.
+         * @type {Guild}
+         */
+        this.guild = guild;
 
         /**
          * The Position of the Channel
