@@ -15,6 +15,7 @@ class User
         /**
          * Whether or not, this User is a bot.
          */
+
         this.isBot = Boolean(data.bot);
 
         /**
