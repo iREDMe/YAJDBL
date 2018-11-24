@@ -19,7 +19,7 @@ YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 
 ## Installation
 **Master**: `$ npm install --save PixelTheGreat/YAJDBL`  
-**Stable**: `$ npm install --save YAJDBL`
+**Stable**: `$ npm install --save yajdbl`
 
 ## Documentation
 Full documentation [here!](https://yajdbl.js.org/)
@@ -34,7 +34,7 @@ Full documentation [here!](https://yajdbl.js.org/)
 ## Notes
 - This is not a clone of Discord.JS  
 - Project started on November 8, 2018  
-- Thanks to `Zoro#0001` *From Plexi Development* for helping me on Typings *soon*  
+- Thanks to `Zoro#0001` *From Plexi Development* for helping me on Typings 
 - Thanks to [boltxyz](https://github.com/boltxyz) For being a contributor
 
 ## Developers
