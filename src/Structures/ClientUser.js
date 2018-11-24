@@ -1,6 +1,6 @@
 const User = require('./User');
 const { OPCODES } = require('../Util/Constants');
-const { ENDPOINTS } = require('../Rest/Endpoints');
+const ENDPOINTS = require('../Rest/Endpoints');
 
 /**
  * Represents the logged in Client on Discord as a User
@@ -89,7 +89,7 @@ class ClientUser extends User
             d:
             {
                 since: this.since,
-                status: status,
+                status: this.status,
                 afk: this.afk,
                 game: this.game
             }
