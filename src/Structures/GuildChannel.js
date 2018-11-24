@@ -1,6 +1,7 @@
 const ENDPOINTS = require('../Rest/Endpoints');
 const CONSTANTS = require('../Util/Constants');
 const Channel = require('./Channel');
+const Guild = require('./Guild');
 
 /**
  * Represents a Guild Channel
