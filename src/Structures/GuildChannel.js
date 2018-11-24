@@ -13,7 +13,7 @@ class GuildChannel extends Channel
     constructor(guild, data)
     {
         super(guild.client, data);
-        Object.defineProperty(this, '_client', { value: client });
+        Object.defineProperty(this, '_client', { value: guild.client });
         
         /** Guild that contains this channel.
          * @type {Guild}
