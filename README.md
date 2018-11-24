@@ -25,11 +25,11 @@ YAJDBL, a Simple and easy to use (WIP) Discord Bot Library for the Discord API!
 Full documentation [here!](https://yajdbl.js.org/)
 
 ## Todo list  
-- Voice Support  
-- Sharding  
-- Proper Disconnection Handling  
-- Finish all the Structures  
-- ~~REST Error Handling~~ ☑
+- [ ] Voice Support  
+- [ ] Sharding  
+- [ ] Proper Disconnection Handling  
+- [ ] Finish all the Structures  
+- [x] ~~REST Error Handling~~
 
 ## Notes
 - This is not a clone of Discord.JS  
