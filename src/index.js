@@ -4,6 +4,6 @@ module.exports =
     MessageEmbed: require('./Structures/MessageEmbed'),
     
     // Util
-    Collection: require('./Utils/Collection'),
+    Collection: require('./Util/Collection'),
     version: require('../package.json').version,
 };
