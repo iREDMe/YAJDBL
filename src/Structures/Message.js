@@ -6,18 +6,18 @@ const ENDPOINTS = require('../Rest/Endpoints');
 
 class Message
 {
-    constructor(client, data, channel, guild)
+    constructor(client, data, channel)
     {
         Object.defineProperty(this, '_client', { value: client });
 
         /**
-         * The Message ID
+         * The Message ID.
          */
         
         this.id = data.id;
 
         /**
-         * The channel the message is sent in
+         * The channel the message is sent in.
          */
 
         this.channel = channel;
@@ -26,7 +26,7 @@ class Message
          * The guild the message is sent in
          */
 
-        this.guild = guild;
+        this.guild = channel.guild;
 
         /**
          * The timestamp the message was created
