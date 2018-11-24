@@ -1,5 +1,6 @@
 const GuildChannel = require('./GuildChannel');
 const ENDPOINTS = require('../Rest/Endpoints');
+const Message = require('./Message');
 
 /**
  * Represents a TextChannel
@@ -8,9 +9,11 @@ const ENDPOINTS = require('../Rest/Endpoints');
 
 class TextChannel extends GuildChannel
 {
-    constructor(client, data)
+    constructor(client, data, guild)
     {
-        super(client, data);
+        super(client, data, guild);
+
+        //this._client = client;
 
         /**
          * The channel topic
@@ -221,7 +224,8 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            var msg = new Message(this._client, res.data, this, this.guildID);
+            return msg;
         });
     }
 

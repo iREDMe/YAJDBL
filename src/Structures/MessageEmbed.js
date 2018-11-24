@@ -132,12 +132,19 @@ class MessageEmbed
 
     /**
      * Sets the color of the Embed
-     * @param {Number} Color code of the Embed
+     * @param {Number|String} Color code of the Embed
      * @returns {MessageEmbed} This embed
      */
 
     setColor(color)
     {
+        if (typeof color === "string")
+        {
+            var hex = color.substring(1);
+            var decimal = "0x" + hex;
+
+            color = parseInt(decimal.substring(2), 16)
+        }
         this.color = color;
         return this;
     }

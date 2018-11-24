@@ -1,7 +1,6 @@
 const ENDPOINTS = require('../Rest/Endpoints');
 const CONSTANTS = require('../Util/Constants');
 const Channel = require('./Channel');
-const Guild = require('./Guild');
 
 /**
  * Represents a Guild Channel
@@ -10,15 +9,9 @@ const Guild = require('./Guild');
 
 class GuildChannel extends Channel
 {
-    constructor(guild, data)
+    constructor(client, data, guild)
     {
-        super(guild.client, data);
-        Object.defineProperty(this, '_client', { value: guild.client });
-        
-        /** Guild that contains this channel.
-         * @type {Guild}
-         */
-        this.guild = guild;
+        super(client, data, guild);
 
         /**
          * The Position of the Channel
@@ -37,6 +30,12 @@ class GuildChannel extends Channel
          */
 
         this.name = data.name;
+
+        /**
+         * The ID of the Guild;
+         */
+
+        Object.defineProperty(this, 'guildID', { value: guild.id });
     }
 
     /**

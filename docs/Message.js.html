@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>User - Documentation</title>
+    <title>Message.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,1012 +29,246 @@
 
 <div id="main">
     
-    <h1 class="page-title">User</h1>
+    <h1 class="page-title">Message.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        User
-        </h2>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const ENDPOINTS = require('../Rest/Endpoints');
+
+/**
+ * @class Represents a Message
+ */
+
+class Message
+{
+    constructor(client, data, channel, guild)
+    {
+        Object.defineProperty(this, '_client', { value: client });
+
+        /**
+         * The Message ID.
+         */
         
-            <div class="class-description"><p>Represents a user</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="User"><span class="type-signature"></span>new User<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="avatar"><span class="type-signature"></span>avatar<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>The user's avatar</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="avatarURL"><span class="type-signature"></span>avatarURL<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>The user's avatar URL</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="defaultAvatar"><span class="type-signature"></span>defaultAvatar<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>The user's default Avatar</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line31">line 31</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="defaultAvatarURL"><span class="type-signature"></span>defaultAvatarURL<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>The user's default Avatar url</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line37">line 37</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="discriminator"><span class="type-signature"></span>discriminator<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>User's discriminator</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line43">line 43</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="id"><span class="type-signature"></span>id<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>User's ID</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="mention"><span class="type-signature"></span>mention<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>User's Mention</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line55">line 55</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="tag"><span class="type-signature"></span>tag<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>User's tag</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-            
-<div class="section-members">
-<h4 class="name" id="username"><span class="type-signature"></span>username<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>User's Username</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line67">line 67</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-</div>
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="createDM"><span class="type-signature"></span>createDM<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>This will create a DM Channel between the client and the user</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="send"><span class="type-signature">(async) </span>send<span class="signature">(content, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Send a message to the User</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="User.js.html">User.js</a>, <a href="User.js.html#line113">line 113</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>content</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>String</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The content you will send</p>
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>Options</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The options for the message</p>
-                
-                    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>embed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>EmbedObject</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <p>The <a href="https://google.com">Options for the embed</a></p>
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-        
-    
-
-    
-
-    
-</article>
+        this.id = data.id;
+
+        /**
+         * The channel the message is sent in.
+         */
+
+        this.channel = channel;
 
-</section>
+        /**
+         * The timestamp the message was created
+         */
+
+        this.createdTimestamp = data.timestamp;
+
+        /**
+         * The timestamp the message was edited
+         */
+
+        this.editedTimestamp = data.edited_timestamp;
+
+        /**
+         * The author of the message
+         */
+
+        this.author = this._client.users.get(data.author.id);
+
+        /**
+         * The message content
+         */
+
+        this.content = data.content;
+
+        /**
+         * An array of message embed object
+         */
+
+        this.embeds = data.embeds;
+
+        /**
+         * An array of user mentions
+         */
+
+        this.mentions = data.mentions;
+
+        /**
+         * An array of reaction objects
+         */
+
+        this.reactions = data.reactions || [];
+
+        /**
+         * Whether or not this message mentioned everyone
+         */
+
+        this.everyone = data.mention_everyone;
+
+        /**
+         * The webhook that sent this message
+         */
+
+        this.webhookID = data.webhook_id || null;
+
+        this.guild = this._client.guilds.get(guild);
+    }
+    
+    /**
+     * Deletes a message
+     * @param {Number} [timeout=0] The amount of ms to delete the message
+     * @returns {Promise&lt;Message>}
+     */
+
+    delete(timeout = 0)
+    {
+        setTimeout(() =>
+        {
+            return this._client.rest.request("DELETE", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
+            {
+                headers:
+                {
+                    Authorization: `Bot ${this._client.token}`
+                }
+            }).then(() =>
+            {
+                return this;
+            });
+        }, timeout);
+    }
+
+    /**
+     * Edits a message
+     * @param {String} content The content of the Message
+     * @param {Object} [options={}] The options for the embed
+     * @param {Object} [options.embed] The embed options for the Message
+     * @returns {Promise&lt;Message>}
+     */
+
+    edit(content, options)
+    {
+        if (typeof content === 'object' &amp;&amp; !options)
+        {
+            options = content;
+            content = null;
+        };
+
+        if (!options) options = {};
+
+        // We add a check if it's a string because mentions on embeds doesn't work
+        if (this._client.disableEveryone &amp;&amp; typeof content === 'string')
+        {
+            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
+        };
+
+        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
+        {
+            data:
+            {
+                content: content,
+                embed: options.embed
+            },
+
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Pins a message
+     * @return {Promise&lt;Message>}
+     */
+
+    pin()
+    {
+        this._client.rest.request("PUT", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Replies to the User
+     * @param {String} content The content you will send
+     * @param {Options} [options={}] The options for the message
+     * @param {EmbedObject} options.embed The {@link https://google.com|Options for the embed}
+     * @returns {Promise&lt;Message>}
+     */
+
+    reply(content, options)
+    {
+        if (typeof content === 'object' &amp;&amp; !options)
+        {
+            options = content;
+            content = null;
+        };
+
+        if (!options) options = {};
+
+        // We add a check if it's a string because mentions on embeds doesn't work
+        if (this._client.disableEveryone &amp;&amp; typeof content === 'string')
+        {
+            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
+        };
+
+        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(this.channel.id),
+        {
+            data:
+            {
+                content: typeof content === 'string' ? `${this.author.mention}, ${content}` : content,
+                embed: options.embed
+            },
+
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Unpins a message
+     * @return {Promise&lt;Message>}
+     */
+
+    unpin()
+    {
+        this._client.rest.request("DELETE", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return this;
+        });
+    }
+};
+
+module.exports = Message;</code></pre>
+        </article>
+    </section>
 
 
 

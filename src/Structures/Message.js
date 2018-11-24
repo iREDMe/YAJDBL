@@ -6,7 +6,7 @@ const ENDPOINTS = require('../Rest/Endpoints');
 
 class Message
 {
-    constructor(client, data, channel)
+    constructor(client, data, channel, guild)
     {
         Object.defineProperty(this, '_client', { value: client });
 
@@ -21,12 +21,6 @@ class Message
          */
 
         this.channel = channel;
-
-        /**
-         * The guild the message is sent in
-         */
-
-        this.guild = channel.guild;
 
         /**
          * The timestamp the message was created
@@ -58,16 +52,6 @@ class Message
 
         this.embeds = data.embeds;
 
-        if (this.guild)
-        {            
-            /**
-             * Represents the author of the message as a guild member
-             */
-
-            this.member = data.member;
-            this.member.user = this.author;
-        }
-
         /**
          * An array of user mentions
          */
@@ -91,6 +75,8 @@ class Message
          */
 
         this.webhookID = data.webhook_id || null;
+
+        this.guild = this._client.guilds.get(guild);
     }
     
     /**
@@ -153,6 +139,86 @@ class Message
                 Authorization: `Bot ${this._client.token}`
             }
         }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Pins a message
+     * @return {Promise<Message>}
+     */
+
+    pin()
+    {
+        this._client.rest.request("PUT", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Replies to the User
+     * @param {String} content The content you will send
+     * @param {Options} [options={}] The options for the message
+     * @param {EmbedObject} options.embed The {@link https://google.com|Options for the embed}
+     * @returns {Promise<Message>}
+     */
+
+    reply(content, options)
+    {
+        if (typeof content === 'object' && !options)
+        {
+            options = content;
+            content = null;
+        };
+
+        if (!options) options = {};
+
+        // We add a check if it's a string because mentions on embeds doesn't work
+        if (this._client.disableEveryone && typeof content === 'string')
+        {
+            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
+        };
+
+        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(this.channel.id),
+        {
+            data:
+            {
+                content: typeof content === 'string' ? `${this.author.mention}, ${content}` : content,
+                embed: options.embed
+            },
+
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Unpins a message
+     * @return {Promise<Message>}
+     */
+
+    unpin()
+    {
+        this._client.rest.request("DELETE", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(res =>
         {
             return this;
         });

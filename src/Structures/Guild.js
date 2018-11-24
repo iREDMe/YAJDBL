@@ -33,16 +33,10 @@ class Guild
         this.splash = data.splash || null;
 
         /**
-         * Guild Owner ID
-         */
-
-        this.ownerID = data.owner_id;
-
-        /**
          * Guild owner ( User Object )
          */
 
-        this.owner = this._client.users.get(this.ownerID);
+        this.owner = this._client.users.get(data.owner_id);
 
         /**
          * The Guild region
@@ -134,12 +128,12 @@ class Guild
         {
             if (channel.type === 0)
             {
-                this._client.channels.set(channel.id, new TextChannel(this._client, channel));
-                this.channels.set(channel.id, new TextChannel(this._client, channel));
+                this._client.channels.set(channel.id, new TextChannel(this._client, channel, data));
+                this.channels.set(channel.id, new TextChannel(this._client, channel, data));
             }
             else {
-                this.channels.set(channel.id, new GuildChannel(this._client, channel));
-                this._client.channels.set(channel.id, new GuildChannel(this._client, channel));
+                this.channels.set(channel.id, new GuildChannel(this._client, channel, data));
+                this._client.channels.set(channel.id, new GuildChannel(this._client, channel, data));
             }
         });
 
@@ -179,7 +173,7 @@ class Guild
      */
     edit(data = {})
     {
-        const resolvedData = {};
+        let resolvedData = {};
 
         if (data.name) resolvedData.name = data.name;
 

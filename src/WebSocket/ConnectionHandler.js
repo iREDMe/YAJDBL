@@ -5,7 +5,6 @@ const { GATEWAY_URL, GATEWAY_VERSION, GATEWAY_CLOSE, OPCODES, WEBSOCKET_ERROR } 
 
 /* Structures */
 const ClientUser = require('../Structures/ClientUser');
-const User = require('../Structures/User');
 const UnavailableGuild = require('../Structures/UnavailableGuild');
 const Guild = require('../Structures/Guild');
 const Message = require('../Structures/Message');
@@ -70,29 +69,30 @@ class ConnectionHandler extends EventEmitter
         switch (packet.t)
         {
             case 'READY':
-                this.client.user = new ClientUser(this.client, packet.d.user);
+                this.user = new ClientUser(this, packet.d.user);
 
                 packet.d.guilds.forEach(g =>
                 {
-                    this.client.guilds.set(g.id, new UnavailableGuild(this.client, g));
+                    this.guilds.set(g.id, new UnavailableGuild(this, g));
                 });
 
                 this.guildLength = packet.d.guilds.length;
                 break;
 
             case 'MESSAGE_CREATE':
-                packet.d = new Message(this, packet.d, this.channels.get(packet.d.channel_id), this.guilds.get(packet.d.guild_id))
+                var _channel = this.channels.get(packet.d.channel_id);
+                packet.d = new Message(this, packet.d, _channel, packet.d.guild_id)
 
                 this.emit('message', packet.d);
                 break;
 
             case 'GUILD_CREATE':
-                this.guild = new Guild(this.client, packet.d);
-                this.client.guilds.set(this.guild.id, this.guild);
+                this.guild = new Guild(this, packet.d);
+                this.guilds.set(this.guild.id, this.guild);
 
-                this.guildLength  = this.guildLength - 1;
+                this.guildLength = this.guildLength - 1;
 
-                if (this.client.wsOptions.fetchAllMembers)
+                if (this.wsOptions.fetchAllMembers)
                 {
                     this.fetchAllMembers(
                     {
@@ -109,14 +109,14 @@ class ConnectionHandler extends EventEmitter
                 break;
 
             case 'GUILD_MEMBERS_CHUNK':
-                var guild = this.client.guilds.get(packet.d.guild_id);
+                var guild = this.guilds.get(packet.d.guild_id);
 
                 packet.d.members.forEach(m =>
                 {
                     guild.members.set(m.user.id, m);
                 });
 
-                this.client.guilds.set(guild.id, guild);
+                this.guilds.set(guild.id, guild);
 
                 this.emit('guildMembersChunk');
                 break;

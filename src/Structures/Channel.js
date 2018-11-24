@@ -26,6 +26,8 @@ class Channel
          */
 
         this.type = null;
+
+        this.mentions = data.mentions;
     }
 
     /**

@@ -123,6 +123,8 @@ class Client extends ConnectionHandler
          */
 
         this.wsOptions.guildCreateTimeout = this.wsOptions.guildCreateTimeout || 200;
+
+        this._guildIDForProperty = "";
     }
 
     /**
