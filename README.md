@@ -40,5 +40,6 @@ YAJDBL, a simple and easy to use (WIP) JavaScript library for interacting with t
 - Thanks to [boltxyz](https://github.com/boltxyz) For being a contributor
 
 ## Developers
-- `Kevlar#6307`: Main Developer/Maintainer  
-- `boltxyz`: Developer/Contributor
+- `Kevlar`: Main Developer/Maintainer  
+- `boltxyz`: Developer/Contributor  
+- `Zoro`: Typings Developer/Contributor
