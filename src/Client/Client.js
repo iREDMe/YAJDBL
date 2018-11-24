@@ -128,6 +128,14 @@ class Client extends ConnectionHandler
     }
 
     /**
+     * Uptime for the client, the time when the client was stated as `READY`
+     * @readonly
+     */
+    get uptime() {
+        return this.readyAt ? Date.now() - this.readyAt : null;
+    }
+
+    /**
      * Makes the bot connect to the Gateway with Token
      * @param {String} token The bot token
      * @example
