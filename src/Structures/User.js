@@ -13,6 +13,12 @@ class User
         Object.defineProperty(this, '_client', { value: client });
 
         /**
+         * Whether or not, this User is a bot.
+         */
+
+        this.isBot = Boolean(data.bot);
+
+        /**
          * The user's avatar
          */
 

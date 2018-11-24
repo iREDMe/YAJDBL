@@ -131,7 +131,8 @@ class Client extends ConnectionHandler
      * Uptime for the client, the time when the client was stated as `READY`
      * @readonly
      */
-    get uptime() {
+    get uptime()
+    {
         return this.readyAt ? Date.now() - this.readyAt : null;
     }
 
