@@ -77,8 +77,8 @@ declare module 'YAJDBL' {
 
 		public createWebhook(options?: { name?: string, avatar: string}): Promise<any>;
 		public edit(options: { name?: string, position: number, topic: string, nsfw: boolean, rate_limit_per_user: number, parent_id: Snowflake }): Promise<TextChannel>;
-		public fetchMessage(messageID: Snowflake): Promise<any>; // @TODO: returns Promise<Message>
-		public fetchMessages(options: { limit?: number, before?: number, after?: number, around?: number }): Promise<Array<any>> // @TODO: Message instead of any.
+		public fetchMessage(messageID: Snowflake): Promise<Message>;
+		public fetchMessages(options: { limit?: number, before?: number, after?: number, around?: number }): Promise<Message[]>;
 
 	}
 
@@ -146,6 +146,33 @@ declare module 'YAJDBL' {
 		public setThumbnail(url: string): MessageEmbed;
 	}
 
+	export class User {
+		constructor(data: UserData, client: Client);
+
+		private _client: Client;
+
+		public readonly isBot: boolean;
+		public readonly avatar: UserData['avatar'];
+		public readonly avatarURL: string | null;
+		public readonly defaultAvatar: string;
+		public readonly defaultAvatarURL: string;
+		public readonly discriminator: string;
+		public readonly id: Snowflake;
+		public readonly username: string;
+
+		public createDM(): Promise<void>;
+		public send(content: string, options?: object): Message;
+	}
+
+
+
+	type UserData = {
+		id: Snowflake;
+		username: string;
+		discriminator: string;
+		bot: boolean;
+		avatar?: string;
+	};
 
 	type MessageEmbedData = {
 		title?: string;
