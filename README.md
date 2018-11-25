@@ -46,6 +46,9 @@ YAJDBL, a simple and easy to use (WIP) JavaScript library for interacting with t
 - `boltxyz`: Developer/Contributor.
 - `Zoro`: Typings Developer/Contributor.
 
+## What is this?
+This branch is will be a new rewrite for YAJDBL. It's because the current one is giving us so many bugs that aren't handled correctly. As both branches will be maintained. But we will mostly focus here. And also, we might merge rewrite and he current one soon.
+
 ## Example
 ```js  
 const yajdbl = require('yajdbl');
