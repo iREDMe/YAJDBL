@@ -29,11 +29,12 @@ YAJDBL, a simple and easy to use (WIP) JavaScript library for interacting with t
 
 ## To-do list  
 - [ ] Voice Support  
+- [ ] Handle errors properly
 - [ ] Sharding  
 - [ ] Proper Disconnection Handling  
 - [ ] Finish all the Structures  
 - [ ] Finish all events
-- [x] ~~REST Error Handling~~
+- [ ] REST Error Handling
 
 ## Notes
 - This is not a clone of Discord.js
