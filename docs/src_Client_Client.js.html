@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Example - Documentation</title>
+    <title>src/Client/Client.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,497 +29,205 @@
 
 <div id="main">
     
-    <h1 class="page-title">Example</h1>
+    <h1 class="page-title">src/Client/Client.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>
-        Example
-        </h2>
-        
-            <div class="class-description"><p>Here's an example on how to use YAJDBL</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Example"><span class="type-signature"></span>new Example<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="examples_example.js.html">examples/example.js</a>, <a href="examples_example.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="ban"><span class="type-signature"></span>ban<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>This is an example on how to use a ban command</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="examples_example.js.html">examples/example.js</a>, <a href="examples_example.js.html#line91">line 91</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>const yajdbl = require('yajdbl');const client = new yajdbl.Client();client.on('ready', () =>{   client.print(`Logged in as ${client.user.tag}`);});client.on('message', (message) =>{    if (message.content.startsWith('!ban'))    {        if (message.member.hasPermission('banMembers')) return message.reply('You lack the permissions to ban!');        var user = message.mentions[0];        if (!user) return message.channel.send('No user was specified');        message.guild.ban(user.id).then(u =>        {            message.channel.send(`Banned ${u.tag}!`)        });    }});client.login('BOT TOKEN');</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="kick"><span class="type-signature"></span>kick<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>This is an example on how to use a kick command</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const ConnectionHandler = require('../WebSocket/ConnectionHandler');
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="examples_example.js.html">examples/example.js</a>, <a href="examples_example.js.html#line125">line 125</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>const yajdbl = require('yajdbl');const client = new yajdbl.Client();client.on('ready', () =>{   client.print(`Logged in as ${client.user.tag}`);});client.on('message', (message) =>{    if (message.content.startsWith('!kick'))    {        if (message.member.hasPermission('kickMembers')) return message.reply('You lack the permissions to kick!');        var user = message.mentions[0];        if (!user) return message.channel.send('No user was specified');        message.guild.kick(user.id).then(u =>        {            message.channel.send(`Kicked ${u.tag}!`)        });    }});client.login('BOT TOKEN');</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="ping"><span class="type-signature"></span>ping<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>This is a simple Ping Command!</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="examples_example.js.html">examples/example.js</a>, <a href="examples_example.js.html#line32">line 32</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>const yajdbl = require('yajdbl');const client = new yajdbl.client();client.on('ready', () =>{    client.print(`Logged in as ${client.user.tag}!`);});client.on('message', (message) =>{    if (message.content === 'ping')    {        message.channel.send(`*Pinging...*`).then(m => m.edit(`Pong! Roundtrip took: ${m.createdTimestamp - message.createdTimestamp}ms`));    }});client.login('BOT TOKEN');</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="ping_pong"><span class="type-signature"></span>ping_pong<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>This is a simple Ping Pong Command!</p>
-</div>
-
-
-
+const Collection = require('../Util/Collection');
+const Request = require('../Rest/Request');
 
+/**
+ * @class
+ * @example
+ * new Client(
+ * {
+ *     disableEveryone: true,
+ *     wsOptions:
+ *     {
+ *         fetchAllMembers: true
+ *     }
+ * });
+ * @param {Object} options Client Options
+ * @param {Boolean} options.disableEveryone Whether or not to disable everyone mention
+ * @param {Object} options.http HTTP Options
+ * @param {Number} options.http.version Discord REST API Version to use
+ * @param {String} options.http.api The base URL of Discord's API
+ * @param {String} options.http.cdn The base URL of Discord's CDN
+ * @param {String} options.http.invite The Base URL of Discord's Invites
+ * @param {Object} options.wsOptions The options of Discord's Websocket
+ * @param {Boolean} options.wsOptions.fetchAllMembers Whether or not to fetch all members ( Will take longer )
+ */
 
-<dl class="details">
+class Client extends ConnectionHandler
+{
+    constructor(options = {})
+    {
+        super(options);
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+        /**
+         * The client's Token
+         */
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="examples_example.js.html">examples/example.js</a>, <a href="examples_example.js.html#line57">line 57</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
+        this.token = null;
 
+        /**
+         * The Channels Collection
+         */
 
+        this.channels = new Collection();
 
+        /**
+         * The Client
+         */
 
+        this.client = this;
 
+        /**
+         * This will disable Mentions for the bot.
+         * @example
+         * &lt;Message>.channel.send('@everyone');
+         * // This would disable the mention for "@everyone"
+         */
 
+        this.disableEveryone = options.disableEveryone || false;
 
+        /**
+         * The Guilds Collection
+         */
 
+        this.guilds = new Collection();
 
+        /**
+         * HTTP Options
+         */
 
+        this.http = options.httpOptions || {};
 
+        /**
+         * The API Version to use
+         */
 
+        this.http.version = this.http.version || 7;
 
+        /**
+         * Base Url of the API
+         */
 
+        this.http.api = this.http.api || `https://discordapp.com/api/v${this.http.version}`;
 
+        /**
+         * Base Url of CDN
+         */
 
-
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>const yajdbl = require('yajdbl');const client = new yajdbl.client();client.on('ready', () =>{    client.print(`Logged in as ${client.user.tag}!`);});client.on('message', (message) =>{    if (message.content === 'ping')    {        message.reply('pong!');    }});client.login('BOT TOKEN');</code></pre>
-
-</div>
-
-</div>
-        
-    
-
-    
-
-    
-</article>
+        this.http.cdn = this.http.cdn || 'https://cdn.discordapp.com';
 
-</section>
+        /**
+         * Base Url of Invites
+         */
+
+        this.http.invite = this.http.invite || 'https://discord.gg';
+
+        /**
+         * The REST API Handler for this Library
+         */
+
+        this.rest = new Request(this);
+
+        /**
+         * The Users Collection
+         */
+
+        this.users = new Collection();
+
+        /**
+         * Websocket Options
+         */
+
+        this.wsOptions = options.wsOptions || {};
+
+        /**
+         * Wheter or not to fetch all guild members
+         */
+
+        this.wsOptions.fetchAllMembers = this.wsOptions.fetchAllMembers || false;
+
+        /**
+         * Timeout for the guildCreate event to be fired
+         */
+
+        this.wsOptions.guildCreateTimeout = this.wsOptions.guildCreateTimeout || 200;
+    }
+
+    /**
+     * Uptime for the client, the time when the client was stated as `READY`
+     * @readonly
+     */
+    
+    get uptime()
+    {
+        return this.readyAt ? Date.now() - this.readyAt : null;
+    }
+
+    /**
+     * Makes the bot connect to the Gateway with Token
+     * @param {String} token The bot token
+     * @example
+     * // Require the package
+     * const Discord = require('YAJDBL');
+     * const client = new Discord.Client();
+     *
+     * client.login('YOUR BOT TOKEN');
+     *
+     * client.on('ready', () =>
+     * {
+     *     console.log(`Logged in as ${client.user.tag}`);
+     * });
+     */
+
+    login(token)
+    {
+        this.token = token;
+        this.connect(token);
+    }
+
+    /**
+     * Disconnects the Client from Discord
+     */
+
+    disconnect()
+    {
+        this.ws.close();
+        return process.exit(0);
+    }
+
+    /**
+     * Prints something to the console
+     * @param {String} message The message to log
+     * @example
+     * &lt;Client>.print('Logged In!');
+     * // Will Return: [2018-11-18 05:41:29]: Logged in!
+     */
+
+    print(message)
+    {
+        var date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+
+        return console.log(`[${date}]: ${message}`);
+    }
+};
+
+module.exports = Client;
+</code></pre>
+        </article>
+    </section>
 
 
 
