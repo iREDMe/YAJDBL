@@ -187,7 +187,7 @@ class Guild
 
     ban(user, options = {})
     {
-        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days}&reason=${options.reason}`,
+        return this._client.rest.request("PUT", `${ENDPOINTS.GUILD_BAN(this.id, user)}?delete-message-days=${options.days || 0}&reason=${options.reason}`,
         {
             headers:
             {
