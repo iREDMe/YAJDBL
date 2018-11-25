@@ -35,7 +35,7 @@ class GuildChannel extends Channel
          * The ID of the Guild;
          */
 
-        Object.defineProperty(this, 'guildID', { value: guild.id });
+        this.guildID = guild.id
     }
 
     /**

@@ -17,6 +17,12 @@ class Channel
         this.id = data.id;
 
         /**
+         * The mention of the Channel
+         */
+
+        this.mention = `<#${this.id}>`;
+
+        /**
          * The Channel Type
          * * `dm` a DM Channel
          * * `group` a group DM Channel
@@ -25,9 +31,7 @@ class Channel
          * * `category` a Channel Category
          */
 
-        this.type = null;
-
-        this.mentions = data.mentions;
+        this.type = data.type;
     }
 
     /**

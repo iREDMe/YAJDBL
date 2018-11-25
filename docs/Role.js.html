@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Message.js - Documentation</title>
+    <title>Role.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Message.js</h1>
+    <h1 class="page-title">Role.js</h1>
     
 
     
@@ -41,238 +41,132 @@
         <article>
             <pre class="prettyprint source linenums"><code>const ENDPOINTS = require('../Rest/Endpoints');
 
-/**
- * @class Represents a Message
- */
-
-class Message
+class Role
 {
-    constructor(client, data, channel, guildID)
+    constructor(client, data, guild)
     {
         Object.defineProperty(this, '_client', { value: client });
 
         /**
-         * The Message ID.
+         * The role ID
          */
-        
+
         this.id = data.id;
 
         /**
-         * The channel the message is sent in.
+         * The role Name
          */
 
-        this.channel = channel;
+        this.name = data.name;
 
         /**
-         * The timestamp the message was created
+         * The role Color
          */
 
-        this.createdTimestamp = data.timestamp;
+        this.color = data.color;
 
         /**
-         * The timestamp the message was edited
+         * If true, users that are part of this role will appear in a separate category in the users list
          */
 
-        this.editedTimestamp = data.edited_timestamp;
+        this.hoist = data.hoist;
 
         /**
-         * The author of the message
+         * The position of the Role
          */
 
-        this.author = this._client.users.get(data.author.id);
+        this.position = data.position;
 
-
-        /*
-         * The guild the message was sent it
+        /**
+         * Permissions for the Role
          */
 
-        this.guild = this._client.guilds.get(guildID) || null;
+        this.permissions = data.permissions;
 
-        if (this.guild)
+        /**
+         * The guild the role is in
+         */
+
+        this.guild = guild;
+
+        /**
+         * Whether or not the role is mentionable
+         */
+
+        this.mentionable = data.mentionable;
+
+        if (this.mentionable)
         {
-
             /**
-             * The guild member
+             * The mention for the role
              */
-        
-            this.member = this.guild.members.get(this.author.id);
+            
+            this.mention = `&lt;@&amp;${this.id}>`
+        }
+    }
+
+    /**
+     * The hexColor of the role
+     * @readonly
+     */
+
+    get hexColor()
+    {
+        let color = this.color.toString(16);
+
+        while (color &lt; 6) color = `0${color}`;
+        return `#${color}`
+    }
+
+    /**
+     * Deletes a role
+     * @returns {Promise&lt;Role>}
+     */
+
+    delete()
+    {
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_ROLE(this.guild.id, this.id),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this;
+        });
+    }
+
+    /**
+     * Edits the role, for permissions, [click here](https://discordapi.com/permissions.html) to calculate permissions
+     * @param {Object} [options={}] The options for the Role
+     * @param {String} [options.name] The new name of the role
+     * @param {Number|String} [options.color] The new color of the Role
+     * @param {Number} [options.permissions] The new permissions of the Role
+     * @param {Boolean} [options.hoist] Whether the role should be displayed separately in the sidebar 
+     * @param {Boolean} [options.mentionable] Whether the role should be mentionable
+     * @returns {Promise&lt;Role>}
+     */
+
+    edit(options = {})
+    {
+        if (options.color &amp;&amp; typeof options.color === "string")
+        {
+            var hex = options.color.substring(1);
+            var decimal = "0x" + hex;
+
+            options.color = parseInt(decimal.substring(2), 16)
         }
 
-        /**
-         * The message content
-         */
-
-        this.content = data.content;
-
-        /**
-         * An array of message embed object
-         */
-
-        this.embeds = data.embeds;
-
-        /**
-         * An array of user mentions
-         */
-
-        this.mentions = data.mentions;
-
-        /**
-         * An array of reaction objects
-         */
-
-        this.reactions = data.reactions || [];
-
-        /**
-         * Whether or not this message mentioned everyone
-         */
-
-        this.everyone = data.mention_everyone;
-
-        /**
-         * The webhook that sent this message
-         */
-
-        this.webhookID = data.webhook_id || null;
-    }
-    
-    /**
-     * Deletes a message
-     * @param {Number} [timeout=0] The amount of ms to delete the message
-     * @returns {Promise&lt;Message>}
-     */
-
-    delete(timeout = 0)
-    {
-        setTimeout(() =>
-        {
-            return this._client.rest.request("DELETE", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
-            {
-                headers:
-                {
-                    Authorization: `Bot ${this._client.token}`
-                }
-            }).then(() =>
-            {
-                return this;
-            });
-        }, timeout);
-    }
-
-    /**
-     * Edits a message
-     * @param {String} content The content of the Message
-     * @param {Object} [options={}] The options for the embed
-     * @param {Object} [options.embed] The embed options for the Message
-     * @returns {Promise&lt;Message>}
-     */
-
-    edit(content, options)
-    {
-        if (typeof content === 'object' &amp;&amp; !options)
-        {
-            options = content;
-            content = null;
-        };
-
-        if (!options) options = {};
-
-        // We add a check if it's a string because mentions on embeds doesn't work
-        if (this._client.disableEveryone &amp;&amp; typeof content === 'string')
-        {
-            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
-        };
-
-        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_ROLE(this.guild.id, this.id),
         {
             data:
             {
-                content: content,
-                embed: options.embed
-            },
-
-            headers:
-            {
-                Authorization: `Bot ${this._client.token}`
-            }
-        }).then(() =>
-        {
-            return this;
-        });
-    }
-
-    /**
-     * Pins a message
-     * @return {Promise&lt;Message>}
-     */
-
-    pin()
-    {
-        this._client.rest.request("PUT", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
-        {
-            headers:
-            {
-                Authorization: `Bot ${this._client.token}`
-            }
-        }).then(res =>
-        {
-            return this;
-        });
-    }
-
-    /**
-     * Replies to the User
-     * @param {String} content The content you will send
-     * @param {Options} [options={}] The options for the message
-     * @param {EmbedObject} options.embed The {@link https://google.com|Options for the embed}
-     * @returns {Promise&lt;Message>}
-     */
-
-    reply(content, options)
-    {
-        if (typeof content === 'object' &amp;&amp; !options)
-        {
-            options = content;
-            content = null;
-        };
-
-        if (!options) options = {};
-
-        // We add a check if it's a string because mentions on embeds doesn't work
-        if (this._client.disableEveryone &amp;&amp; typeof content === 'string')
-        {
-            content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
-        };
-
-        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGES(this.channel.id),
-        {
-            data:
-            {
-                content: typeof content === 'string' ? `${this.author.mention}, ${content}` : content,
-                embed: options.embed
-            },
-
-            headers:
-            {
-                Authorization: `Bot ${this._client.token}`
-            }
-        }).then(() =>
-        {
-            return this;
-        });
-    }
-
-    /**
-     * Unpins a message
-     * @return {Promise&lt;Message>}
-     */
-
-    unpin()
-    {
-        this._client.rest.request("DELETE", ENDPOINTS.CHANNEL_PIN_MESSAGES(this.channel.id, this.id),
-        {
-            headers:
-            {
-                Authorization: `Bot ${this._client.token}`
+                name: options.name || this.name,
+                permissions: options.permissions || this.permissions,
+                color: options.color || this.color,
+                hoist: options.hoist || this.hoist,
+                mentionable: options.mentionable || this.mentionable
             }
         }).then(res =>
         {
@@ -281,7 +175,7 @@ class Message
     }
 };
 
-module.exports = Message;</code></pre>
+module.exports = Role;</code></pre>
         </article>
     </section>
 

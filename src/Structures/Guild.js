@@ -2,7 +2,9 @@ const Collection = require('../Util/Collection');
 const ENDPOINTS = require('../Rest/Endpoints');
 const TextChannel = require('./TextChannel');
 const GuildChannel = require('./GuildChannel');
+const GuildMember = require('./GuildMember');
 const User = require('./User');
+const Role = require('./Role');
 
 /**
  * @class Represents a Guild
@@ -31,12 +33,6 @@ class Guild
          */
 
         this.splash = data.splash || null;
-
-        /**
-         * Guild owner ( User Object )
-         */
-
-        this.owner = this._client.users.get(data.owner_id);
 
         /**
          * The Guild region
@@ -124,6 +120,17 @@ class Guild
 
         this.members = new Collection();
 
+        /**
+         * A collection of Guild Roles
+         */
+
+        this.roles = new Collection();
+
+        data.roles.forEach(role =>
+        {
+            this.roles.set(role.id, new Role(this._client, role, this));
+        });
+
         data.channels.forEach(channel =>
         {
             if (channel.type === 0)
@@ -139,9 +146,35 @@ class Guild
 
         data.members.forEach(member =>
         {
-            member.guild = this;
-            this.members.set(member.user.id, member);
             this._client.users.set(member.user.id, new User(this._client, member.user));
+            this.members.set(member.user.id, new GuildMember(this._client, member, this));
+
+            /**
+             * The guild Owner
+             */
+
+            this.owner = this._client.users.get(data.owner_id);
+        });
+    }
+
+    /**
+     * Adds a user a role
+     * @param {String} user The id of the user
+     * @param {String} role The role id
+     * @returns {Promise<GuildMember>}
+     */
+
+    addRole(user, role)
+    {
+        return this._client.rest.request("PUT", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this.members.get(user);
         });
     }
 
@@ -149,7 +182,7 @@ class Guild
      * Bans a guild member
      * @param {String} user The user ID of the member to ban
      * @param {Object} options Ban options
-     * @returns {Promise<User>}
+     * @returns {Promise<GuildMember>}
      */
 
     ban(user, options = {})
@@ -393,14 +426,36 @@ class Guild
     }
 
     /**
-     * Softbans a user
-     * @param {String} user The ID of the User to softban
-     * @returns {Promise<Member>}
+     * Removes a role from a user
+     * @param {String} user The id of the user
+     * @param {String} role The role id
+     * @returns {Promise<GuildMember>}
      */
 
-    async softban(user)
+    removeRole(user, role)
     {
-        this.ban(user, { days: 7 });
+        return this._client.rest.request("DELETE", ENDPOINTS.GUILD_MEMBER_ROLE(this.id, user, role),
+        {
+            headers:
+            {
+                Authorization: `Bot ${this._client.token}`
+            }
+        }).then(() =>
+        {
+            return this.members.get(user);
+        });
+    }
+
+    /**
+     * Softbans a user
+     * @param {String} user The ID of the User to softban
+     * @param {String} [reason] The reason of the softban
+     * @returns {Promise<GuildMember>}
+     */
+
+    async softban(user, reason)
+    {
+        this.ban(user, { days: 7, reason: reason });
         this.unban(user);
 
         return this.members.get(user);
@@ -409,7 +464,7 @@ class Guild
     /**
      * Unbans a member
      * @param {String} user The UserID to unban
-     * @returns {Promise<Member>}
+     * @returns {Promise<GuildMember>}
      */
 
     unban(user)

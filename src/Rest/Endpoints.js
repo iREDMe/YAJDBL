@@ -9,7 +9,7 @@ module.exports =
     /* Channels */
     CHANNELS: (channelID) => `channels/${channelID}`,
     CHANNEL_INVITES: (channelID) => `channels/${channelID}/invites`,
-    CHANNEL_MESSAGE: (channelID, messageID) => `channels${channelID}/messages/${messageID}`,
+    CHANNEL_MESSAGE: (channelID, messageID) => `channels/${channelID}/messages/${messageID}`,
     CHANNEL_MESSAGES: (channelID) => `channels/${channelID}/messages`,
     CHANNEL_BULK_DELETE: (channelID) => `channels/${channelID}/messages/bulk-delete`,
     CHANNEL_PIN_MESSAGES: (channelID, messageID) => `channels/${channelID}/pins/${messageID}`,
@@ -25,5 +25,7 @@ module.exports =
     GUILD_MEMBER: (guildID, userID) => `guilds/${guildID}/members/${userID}`,
     GUILD_MEMBERS: (guildID) => `guilds/${guildID}/members`,
     GUILD_REGIONS: (guildID) => `guilds/${guildID}/regions`,
-    GUILD_PRUNE: (guildID) => `guilds/${guildID}/prune`
+    GUILD_PRUNE: (guildID) => `guilds/${guildID}/prune`,
+    GUILD_ROLE: (guildID, roleID) => `guilds/${guildID}/roles/${roleID}`,
+    GUILD_MEMBER_ROLE: (guildID, userID, roleID) => `guilds/${guildID}/members/${userID}/roles/${roleID}`
 };

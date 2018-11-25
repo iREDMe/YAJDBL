@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Channel - Documentation</title>
+    <title>GuildMember - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Channel</h1>
+    <h1 class="page-title">GuildMember</h1>
     
 
     
@@ -42,10 +42,10 @@
 <header>
     
         <h2>
-        Channel
+        GuildMember
         </h2>
         
-            <div class="class-description"><p>Represents a Channel</p></div>
+            <div class="class-description"><p>Represents a GuildMember</p></div>
         
     
 </header>
@@ -60,7 +60,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Channel"><span class="type-signature"></span>new Channel<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="GuildMember"><span class="type-signature"></span>new GuildMember<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -99,7 +99,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_Structures_Channel.js.html">src/Structures/Channel.js</a>, <a href="src_Structures_Channel.js.html#line7">line 7</a>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -152,13 +152,13 @@
         
             
 <div class="section-members">
-<h4 class="name" id="id"><span class="type-signature"></span>id<span class="type-signature"></span></h4>
+<h4 class="name" id="guild"><span class="type-signature"></span>guild<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>The Channel ID</p>
+    <p>The guild the Member is in</p>
 </div>
 
 
@@ -194,7 +194,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_Structures_Channel.js.html">src/Structures/Channel.js</a>, <a href="src_Structures_Channel.js.html#line17">line 17</a>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -216,13 +216,13 @@
         
             
 <div class="section-members">
-<h4 class="name" id="mention"><span class="type-signature"></span>mention<span class="type-signature"></span></h4>
+<h4 class="name" id="permission"><span class="type-signature"></span>permission<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>The mention of the Channel</p>
+    <p>The permission Class</p>
 </div>
 
 
@@ -258,7 +258,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_Structures_Channel.js.html">src/Structures/Channel.js</a>, <a href="src_Structures_Channel.js.html#line23">line 23</a>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line87">line 87</a>
     </li></ul></dd>
     
 
@@ -280,20 +280,13 @@
         
             
 <div class="section-members">
-<h4 class="name" id="type"><span class="type-signature"></span>type<span class="type-signature"></span></h4>
+<h4 class="name" id="roles"><span class="type-signature"></span>roles<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>The Channel Type</p>
-<ul>
-<li><code>dm</code> a DM Channel</li>
-<li><code>group</code> a group DM Channel</li>
-<li><code>text</code> a Text Channel</li>
-<li><code>voice</code> a Voice Channel</li>
-<li><code>category</code> a Channel Category</li>
-</ul>
+    <p>A collection of roles that the Member has</p>
 </div>
 
 
@@ -329,7 +322,71 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_Structures_Channel.js.html">src/Structures/Channel.js</a>, <a href="src_Structures_Channel.js.html#line34">line 34</a>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+</div>
+
+        
+            
+<div class="section-members">
+<h4 class="name" id="user"><span class="type-signature"></span>user<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>The user object of the Member</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -360,14 +417,14 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="Channel.html">Channel</a>>}</span></h4>
+    <h4 class="name" id="addRole"><span class="type-signature"></span>addRole<span class="signature">(role)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Deletes the Channel</p>
+    <p>Adds a user a role</p>
 </div>
 
 
@@ -403,7 +460,480 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_Structures_Channel.js.html">src/Structures/Channel.js</a>, <a href="src_Structures_Channel.js.html#line46">line 46</a>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>role</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>The role id</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="ban"><span class="type-signature"></span>ban<span class="signature">(days, reason)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Bans a guild member</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line67">line 67</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>days</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>The amount of days to delete the message of the user</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>Ban reason</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="hasPermission"><span class="type-signature"></span>hasPermission<span class="signature">(key)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Checks if the member has the Specified Permission or not</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String.&lt;Permission></code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>The permission to check</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="kick"><span class="type-signature"></span>kick<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Kicks a User</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -445,7 +975,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><code>Promise.&lt;<a href="Channel.html">Channel</a>></code></span>
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
 
 
     </dd>
@@ -457,12 +987,433 @@
 
 
 
-<div class="section-examples">
-<h5>Example</h5>
+</div>
+        
+            
+<div class="section-method">
 
-    <pre class="prettyprint"><code>&lt;Channel>.delete()    .then(c => console.log(c))    .catch(console.error);</code></pre>
+    
+
+    <h4 class="name" id="removeRole"><span class="type-signature"></span>removeRole<span class="signature">(role)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Removes a role from a user</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>role</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>The role id</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
 
 </div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="softban"><span class="type-signature"></span>softban<span class="signature">(reason<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Softbans a user</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line119">line 119</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>String</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>The reason of the softban</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="unban"><span class="type-signature"></span>unban<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="GuildMember.html">GuildMember</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Unbans a member</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_Structures_GuildMember.js.html">src/Structures/GuildMember.js</a>, <a href="src_Structures_GuildMember.js.html#line129">line 129</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Promise.&lt;<a href="GuildMember.html">GuildMember</a>></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
 
 </div>
         

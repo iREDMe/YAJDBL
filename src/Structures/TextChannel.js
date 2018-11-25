@@ -1,6 +1,7 @@
 const GuildChannel = require('./GuildChannel');
 const ENDPOINTS = require('../Rest/Endpoints');
 const Message = require('./Message');
+const Constants = require('../Util/Constants');
 
 /**
  * Represents a TextChannel
@@ -13,19 +14,11 @@ class TextChannel extends GuildChannel
     {
         super(client, data, guild);
 
-        //this._client = client;
-
         /**
          * The channel topic
          */
 
         this.topic = data.topic;
-
-        /**
-         * The channel type ( Text )
-         */
-
-        this.type = 'text';
 
         /**
          * Whether the channel is nsfw or not
@@ -38,6 +31,12 @@ class TextChannel extends GuildChannel
          */
 
         this.lastMessageID = data.last_message_id;
+
+        /**
+         * The type of the Channel
+         */
+
+        this.type = Constants.CHANNEL_TYPE[data.type];
     }
 
     /**
@@ -120,7 +119,7 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            return new Message(this._client, res.data, this, this.guildID);
         });
     }
 
@@ -136,7 +135,24 @@ class TextChannel extends GuildChannel
 
     fetchMessages(options = {})
     {
-        return this._client.rest.request("GET", `${ENDPOINTS.CHANNEL_MESSAGES(this.id)}?limit=${options.limit || 50}&before=${options.before || null}&after=${options.after || null}&around=${options.around || null}`,
+        var query = [];
+
+        if (options.before && typeof options.before === 'string')
+        {
+            query.push(`&before=${options.before}`)
+        }
+
+        if (options.after && typeof options.after === 'string')
+        {
+            query.push(`&after=${options.after}`)
+        }
+
+        if (options.around && typeof options.around === 'string')
+        {
+            query.push(`&around=${options.around}`)
+        }
+
+        return this._client.rest.request("GET", `${ENDPOINTS.CHANNEL_MESSAGES(this.id)}?limit=${options.limit || 50}${query.join('')}`,
         {
             headers:
             {
@@ -144,7 +160,10 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            return res.data.map(r =>
+            {
+                return new Message(this._client, r, this, this.guildID);
+            });
         });
     }
 
@@ -163,7 +182,10 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            return res.data.map(r =>
+            {
+                return new Message(this._client, r, this, this.guildID);
+            });
         });
     }
 
@@ -182,7 +204,7 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            return new Message(this._client, res.data, this, this.guildID);
         });
     }
 
@@ -224,8 +246,7 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            var msg = new Message(this._client, res.data, this, this.guildID);
-            return msg;
+            return new Message(this._client, res.data, this, this.guildID);
         });
     }
 
@@ -244,7 +265,7 @@ class TextChannel extends GuildChannel
             }
         }).then(res =>
         {
-            return res.data;
+            return new Message(this._client, res.data, this, this.guildID);
         });
     }
 };

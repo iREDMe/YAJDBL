@@ -8,6 +8,7 @@ const ClientUser = require('../Structures/ClientUser');
 const UnavailableGuild = require('../Structures/UnavailableGuild');
 const Guild = require('../Structures/Guild');
 const Message = require('../Structures/Message');
+const DMChannel = require('../Structures/DMChannel');
 
 class ConnectionHandler extends EventEmitter
 {
@@ -81,8 +82,8 @@ class ConnectionHandler extends EventEmitter
                 break;
 
             case 'MESSAGE_CREATE':
-                var _channel = this.channels.get(packet.d.channel_id);
-                packet.d = new Message(this, packet.d, _channel, packet.d.guild_id)
+                var channel = this.channels.get(packet.d.channel_id).type === 'text' ? this.channels.get(packet.d.channel_id) : this.channels.get(packet.d.channel_id);
+                packet.d = new Message(this, packet.d, channel, packet.d.guild_id)
 
                 this.emit('message', packet.d);
                 break;
@@ -124,6 +125,38 @@ class ConnectionHandler extends EventEmitter
 
             case 'ERROR':
                 this.emit('error', packet.d);
+                break;
+
+            case 'GUILD_MEMBER_UPDATE':
+                var guild = this.guilds.get(packet.d.guild_id);
+                var member = guild.members.get(packet.d.user.id)
+                
+                if (packet.d.roles.length > member.roles.size)
+                {
+                    var role = guild.roles.get(packet.d.roles[packet.d.roles.length - 1]);
+
+                    return member.roles.set(role.id, role);
+                }
+                if (packet.d.roles.length < member.roles.size)
+                {
+                    var oldRoles = member.roles.keyArray();
+                    var removedRoles = oldRoles.filter(val => !packet.d.roles.includes(val));
+
+                    removedRoles.forEach(role =>
+                    {
+                        member.roles.delete(role);
+                    });
+                }
+
+                this.emit('guildMemberUpdate', packet.d);
+                break;
+
+            case 'CHANNEL_CREATE':
+                if (packet.d.type === 1)
+                {
+                    this.channels.set(packet.d.id, new DMChannel(this, packet.d));
+                }
+                this.emit('channelCreate', packet.d)
                 break;
         }
     }

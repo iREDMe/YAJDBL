@@ -1,5 +1,7 @@
 const { DEFAULTAVATARS } = require('../Util/Constants');
 const ENDPOINTS = require('../Rest/Endpoints');
+const Message = require('./Message');
+const DMChannel = require('./DMChannel');
 require('../Util/Prototypes');
 
 /**
@@ -11,12 +13,6 @@ class User
     constructor(client, data)
     {
         Object.defineProperty(this, '_client', { value: client });
-
-        /**
-         * Whether or not, this User is a bot.
-         */
-
-        this.isBot = Boolean(data.bot);
 
         /**
          * The user's avatar
@@ -105,7 +101,7 @@ class User
             }
         }).then(res =>
         {
-            return res.data;
+            return new DMChannel(this._client, res.data);
         });
     }
 
@@ -148,7 +144,8 @@ class User
             }
         }).then(res =>
         {
-            return res.data;
+            var msg = new Message(this._client, res.data, channel, null);
+            return msg;
         });
     }
 };

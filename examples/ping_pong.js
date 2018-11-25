@@ -10,7 +10,7 @@ client.on('message', (message) =>
 {
     if (message.content === 'ping')
     {
-        message.channel.send(`*Pinging...*`).then(m => m.edit(`Pong! Roundtrip took: ${m.createdTimestamp - message.createdTimestamp}ms`));
+        message.channel.send('pong!');
     }
 });
 

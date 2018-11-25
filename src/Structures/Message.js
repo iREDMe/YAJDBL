@@ -6,7 +6,7 @@ const ENDPOINTS = require('../Rest/Endpoints');
 
 class Message
 {
-    constructor(client, data, channel, guild)
+    constructor(client, data, channel, guildID)
     {
         Object.defineProperty(this, '_client', { value: client });
 
@@ -23,22 +23,51 @@ class Message
         this.channel = channel;
 
         /**
+         * The time the message was created
+         */
+
+        this.createdAt = data.timestamp;
+
+        /**
          * The timestamp the message was created
          */
 
-        this.createdTimestamp = data.timestamp;
+        this.createdTimestamp = new Date(data.timestamp).getTime();
 
         /**
-         * The timestamp the message was edited
+         * The time the message was edited
          */
 
-        this.editedTimestamp = data.edited_timestamp;
+        this.editedAt = data.edited_timestamp;
+
+        /**
+         * The timestamp the message was created
+         */
+
+        this.editedTimestamp = new Date(data.edited_timestamp).getTime() || null;
 
         /**
          * The author of the message
          */
 
         this.author = this._client.users.get(data.author.id);
+
+
+        /*
+         * The guild the message was sent it
+         */
+
+        this.guild = this._client.guilds.get(guildID) || null;
+
+        if (this.guild)
+        {
+
+            /**
+             * The guild member
+             */
+        
+            this.member = this.guild.members.get(this.author.id);
+        }
 
         /**
          * The message content
@@ -75,8 +104,6 @@ class Message
          */
 
         this.webhookID = data.webhook_id || null;
-
-        this.guild = this._client.guilds.get(guild);
     }
     
     /**
@@ -126,7 +153,7 @@ class Message
             content = content.replaceAll('@everyone', '@\u200beveryone').replaceAll('@here', '@\u200bhere');
         };
 
-        return this._client.rest.request("POST", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
+        return this._client.rest.request("PATCH", ENDPOINTS.CHANNEL_MESSAGE(this.channel.id, this.id),
         {
             data:
             {

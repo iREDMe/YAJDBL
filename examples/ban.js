@@ -6,17 +6,19 @@ client.on('ready', () =>
     client.print(`Logged in as ${client.user.tag}`);
 });
 
-client.on('message', (message) =>
+client.on('msg', (msg) =>
 {
-    if (message.content.startsWith('!ban'))
+    if (msg.content.startsWith('!ban'))
     {
-        var user = message.mentions[0];
+        if (msg.member.hasPermission('banMembers')) return msg.reply('You lack the permissions to ban!');
 
-        if (!user) return message.channel.send('No user was specified');
+        var user = msg.mentions[0];
 
-        message.guild.ban(user.id).then(u =>
+        if (!user) return msg.channel.send('No user was specified');
+
+        msg.guild.ban(user.id).then(u =>
         {
-            message.channel.send(`Banned ${u.tag}!`)
+            msg.channel.send(`Banned ${u.tag}!`)
         });
     }
 });
