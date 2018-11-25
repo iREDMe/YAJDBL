@@ -29,7 +29,7 @@ class Example
      * client.login('BOT TOKEN');
      */
 
-    ping_pong()
+    ping()
     {}
 
     /**
