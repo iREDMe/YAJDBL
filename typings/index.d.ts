@@ -2,7 +2,7 @@
 // Typings Author: Zoro <admin@zoro.tech>
 // License: MIT
 
-declare module 'YAJDBL' {
+declare module 'yajdbl' {
 	export class Client extends ConnectionHandler {
 		constructor(options?: ClientOptions);
 	
@@ -28,14 +28,13 @@ declare module 'YAJDBL' {
 
 
 	export class Collection<K, V> extends Map<K, V> {
-	
 		private _array: V[];
 		private _keyArray: K[];
 
 		public array(): V[];
 		public keyArray(): K[];
-		public first(count?: number): Array<any>;
-		public every(fn: void, thisArg?: any): any;
+		public first(count?: number): any[];
+		public every(fn: (v: V, k: V) => boolean, thisArg?: any): boolean;
 		public firstKey(count?: number): any;
 		public lastKey(count?: number): any;
 		public find(propOrFunc: string | void, value?: any): any;

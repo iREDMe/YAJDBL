@@ -89,16 +89,16 @@ class Collection extends Map {
     }
 
     every(fn, thisArg) {
-        if(thisArg) {
-          fn = fn.bind(thisArg);
+        if (thisArg) {
+            fn = fn.bind(thisArg);
         }
-        for(const [key, val] of this.entries()) {
-          if(!fn(val, key)) {
-            return false;
-          }
+        for (const [key, val] of this.entries()) {
+            if (!fn(val, key)) {
+                return false;
+            }
         }
         return true;
-      }
+    }
 
     /**
      * Obtains the first key(s) in this collection.
