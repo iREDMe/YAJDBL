@@ -29,11 +29,12 @@ YAJDBL, a simple and easy to use (WIP) JavaScript library for interacting with t
 
 ## To-do list  
 - [ ] Voice Support  
+- [ ] Handle errors properly
 - [ ] Sharding  
 - [ ] Proper Disconnection Handling  
 - [ ] Finish all the Structures  
 - [ ] Finish all events
-- [x] ~~REST Error Handling~~
+- [ ] REST Error Handling
 
 ## Notes
 - This is not a clone of Discord.js
@@ -45,6 +46,9 @@ YAJDBL, a simple and easy to use (WIP) JavaScript library for interacting with t
 - `Kevlar`: Main Developer/Maintainer. 
 - `boltxyz`: Developer/Contributor.
 - `Zoro`: Typings Developer/Contributor.
+
+## What is this?
+This branch is will be a new rewrite for YAJDBL. It's because the current one is giving us so many bugs that aren't handled correctly. As both branches will be maintained. But we will mostly focus here. And also, we might merge rewrite and he current one soon.
 
 ## Example
 ```js  
